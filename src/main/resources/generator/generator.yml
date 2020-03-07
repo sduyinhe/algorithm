@@ -1,0 +1,48 @@
+dataSource:
+    url: jdbc:mysql://192.168.2.81:3306/crm_dev_test?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+template:
+  path:
+  commonData:
+    author: yanghw #新建文件所属人
+    basePackage: com.cheche.crm
+    modelPackage: com.cheche.crm.model
+    mapperPackage: com.cheche.crm.repository
+    servicePackage: com.cheche.crm.service
+    controllerPackage: com.cheche.crm.web.controller
+  dataProvider: com.galaxy.generator.provider.MyDataSourceProvider
+generator:
+  #model
+  - templateName: model.ftl
+    targetFileName: /crm-common/src/main/java/com/cheche/crm/model/{prefix}/{modelName}.java
+  #mapper-xml
+  - templateName: sql-query-xml.ftl
+    targetFileName: /crm-common/src/main/resources/sqlmap/{prefix}/query/{modelName}QueryMapper.xml
+  - templateName: sql-command-xml.ftl
+    targetFileName: /crm-common/src/main/resources/sqlmap//{prefix}/command/{modelName}CommandMapper.xml
+  #repository
+  - templateName: mapper-query.ftl
+    targetFileName: /crm-common/src/main/java/com/cheche/crm/repository/{prefix}/query/{modelName}QueryMapper.java
+  - templateName: mapper-command.ftl
+    targetFileName: /crm-common/src/main/java/com/cheche/crm/repository/{prefix}/command/{modelName}CommandMapper.java
+  #service
+  - templateName: service.ftl
+    targetFileName: /crm-common/src/main/java/com/cheche/crm/service/{prefix}/{modelName}Service.java
+  - templateName: service-impl.ftl
+    targetFileName: /crm-common/src/main/java/com/cheche/crm/service/{prefix}/impl/{modelName}ServiceImpl.java
+  #controller
+  - templateName: controller.ftl
+    targetFileName: /crm-web-admin/src/main/java/com/cheche/crm/web/controller/{prefix}/rest/{modelName}Controller.java
+  - templateName: controller-request-create.ftl
+    targetFileName: /crm-web-admin/src/main/java/com/cheche/crm/web/controller/{prefix}/request/{modelName}CreateRequest.java
+  - templateName: controller-request-update.ftl
+    targetFileName: /crm-web-admin/src/main/java/com/cheche/crm/web/controller/{prefix}/request/{modelName}UpdateRequest.java
+  - templateName: controller-response.ftl
+    targetFileName: /crm-web-admin/src/main/java/com/cheche/crm/web/controller/{prefix}/response/{modelName}FoundResponse.java
+  #test
+  #- templateName: test-controller.ftl
+  #  targetFileName: /crm-web-admin/src/test/java/com/cheche/crm/web/controller/{prefix}/rest/{modelName}ControllerIntTest.java
+  #test-doc
+  #todo

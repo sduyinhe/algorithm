@@ -21,3 +21,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# directory
+/alsModel.obj
+/AvroTest.avro
+/crm-common
+/crm-web-admin
+/hello3.parquet
+/spark-warehouse
+/target
+/tmp
+.idea
+algorithm.iml
+
