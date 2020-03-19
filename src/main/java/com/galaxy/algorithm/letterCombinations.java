@@ -29,7 +29,7 @@ public class letterCombinations
     public static void main(String[] args)
     {
         letterCombinations letterCombinations = new letterCombinations();
-        System.out.println(letterCombinations.letterCombinations("23"));
+        System.out.println(letterCombinations.letterCombinations("234"));
     }
 
     public List<String> letterCombinations(String digits)
