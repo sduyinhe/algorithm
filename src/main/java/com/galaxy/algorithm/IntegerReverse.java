@@ -25,7 +25,7 @@ public class IntegerReverse
     public static void main(String[] args)
     {
         IntegerReverse integerReverse = new IntegerReverse();
-        System.out.println(integerReverse.isPalindrome(121));
+        System.out.println(integerReverse.isPalindrome(6));
     }
 
     public int reverse(int x)
