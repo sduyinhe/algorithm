@@ -26,21 +26,23 @@ public class JsoupTest {
 //                .post();
         //document.getE
 
-        Workbook workbook = WorkbookFactory.create(POICacheManager.getFile("E:/test/现有保单分析表yhw.xlsx"));
-        int sheetCount = workbook.getNumberOfSheets();
-        String result = "";
-        for (int i = 0; i < sheetCount; i++) {
-            //ExcelXorHtmlUtil每次转换得到的样式名称不一样，所以style必须带着返回前端
-            result += dealSheet(workbook.getSheetAt(i).getSheetName(), ExcelXorHtmlUtil.excelToHtml(new ExcelToHtmlParams(workbook, i)));
-        }
-
-        File file1 = new File("C:\\Users\\cheche\\Desktop\\test4.html");
-        FileOutputStream outputStream = new FileOutputStream(file1);
-        byte[] bytes = result.getBytes();
-        System.out.println("字节数：" + bytes.length);
-        outputStream.write(bytes, 0, bytes.length);
-        outputStream.flush();
-        outputStream.close();
+//        Workbook workbook = WorkbookFactory.create(POICacheManager.getFile("E:/test/现有保单分析表yhw.xlsx"));
+//        int sheetCount = workbook.getNumberOfSheets();
+//        String result = "";
+//        for (int i = 0; i < sheetCount; i++) {
+//            //ExcelXorHtmlUtil每次转换得到的样式名称不一样，所以style必须带着返回前端
+//            result += dealSheet(workbook.getSheetAt(i).getSheetName(), ExcelXorHtmlUtil.excelToHtml(new ExcelToHtmlParams(workbook, i)));
+//        }
+//
+//        File file1 = new File("C:\\Users\\cheche\\Desktop\\test4.html");
+//        FileOutputStream outputStream = new FileOutputStream(file1);
+//        byte[] bytes = result.getBytes();
+//        System.out.println("字节数：" + bytes.length);
+//        outputStream.write(bytes, 0, bytes.length);
+//        outputStream.flush();
+//        outputStream.close();
+        String txt ="";
+        JsoupTest.dealImage("https://dev1.wx.abaobaoxian.com","<div></div><p>少时诵诗书</p><p>yyyyyyny<img src=\"/sr/itg/abao/cms/www/202004/15094309lxgl.png\" style=\"max-width: 750px; width: 368px; height: 164px;\" width=\"368\" height=\"164\"/>&nbsp; &nbsp; &nbsp; asdfadffdaf&nbsp;<img src=\"/sr/itg/abao/cms/www/202004/15094309lxgl.png\" style=\"max-width: 750px; width: 375px; \" width=\"375\" height=\"164\"/> &nbsp; &nbsp; &nbsp;<img src=\"/sr/itg/abao/cms/www/202004/15094309lxgl.png\" style=\"max-width: 750px; width: 375px; \" width=\"375\" height=\"164\"/> &nbsp; &nbsp; &nbsp;<img src=\"/sr/itg/abao/cms/www/202004/15094309lxgl.png\" style=\"max-width: 750px; width: 375px; \" width=\"375\" height=\"164\"/></p><p>阿达的范范</p>");
 
     }
 
@@ -116,5 +118,18 @@ public class JsoupTest {
                 rowspan--;
             }
         }
+    }
+
+    public static void dealImage(String domainNoRest, String txt) {
+        long startTime = System.currentTimeMillis();
+        Document document = Jsoup.parse(txt);
+        Elements elements = document.select("img");
+        elements.forEach(ele -> {
+            ele.attr("style", "width:100%");
+            ele.attr("src", domainNoRest + ele.attr("src"));
+        });
+
+        System.out.println(document.body().html());
+        System.out.println("耗时："+ (System.currentTimeMillis()-startTime));
     }
 }

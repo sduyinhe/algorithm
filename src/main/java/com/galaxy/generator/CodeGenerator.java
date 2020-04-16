@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  */
 public class CodeGenerator {
     public static void main(String[] args){
-        String tableName = "log_home_customization_log";
+        String tableName = "log_article_acquisition_log";
         //构造参数
         GeneratorParam param = GeneratorParam.builder().tableName(tableName).build();
         //加载配置

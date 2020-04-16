@@ -5,7 +5,7 @@ spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://192.168.2.81:3306/abao2?useSSL=false&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/abao2?useSSL=false&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
     druid:
       initial-size: 2
       max-active: 10
@@ -46,10 +46,10 @@ spring:
           starttls:
             enable: true
             required: true
-#  cache:
-#    type: ehcache
-#    ehcache:
-#      config: classpath:/cache/ehcache-local.xml
+  #  cache:
+  #    type: ehcache
+  #    ehcache:
+  #      config: classpath:/cache/ehcache-local.xml
   redis:
     #redis 索引，默认为0
     database: 1
@@ -68,5 +68,15 @@ spring:
         #连接池中的最小空闲连接
         min-idle: 2
     timeout: 200
-#websocket:
-#  url: ws://localhost:8080/websocket
+  #websocket:
+  #  url: ws://localhost:8080/websocket
+  freemarker:
+    cache: false
+    charset: UTF-8
+    content-type: text/html
+    suffix: .ftl
+    template-loader-path: classpath:/templates
+  #mvc:
+  #  static-path-pattern: /**
+  #resources:
+  #  static-locations: /static/
