@@ -33,4 +33,5 @@ hs_err_pid*
 /tmp
 .idea
 algorithm.iml
-
+/abao-rest
+/abao-service

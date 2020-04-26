@@ -1,0 +1,56 @@
+dataSource:
+    url: jdbc:mysql://localhost:3306/abao2?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+template:
+  path:
+  commonData:
+    author: yhw #新建文件所属人
+    basePackage: com.cheche365.abao
+    modelPackage: com.cheche365.abao.service.model
+    mapperPackage: com.cheche365.abao.service.repository
+    servicePackage: com.cheche365.abao.service
+    controllerPackage: com.cheche365.abao.controller
+  dataProvider: com.galaxy.abaoGenerator.provider.MyDataSourceProvider
+generator:
+  #model
+  - templateName: abao/model.ftl
+    targetFileName: /abao-service/src/main/groovy/com/cheche365/abao/service/model/{prefix}/{modelName}.groovy
+  - templateName: abao/model-excel.ftl
+    targetFileName: /abao-service/src/main/groovy/com/cheche365/abao/service/model/{prefix}/{modelName}Excel.groovy
+  #mapper-xml
+#  - templateName: sql-query-xml.ftl
+#    targetFileName: /abao-service/src/main/resources/sqlmap/{prefix}/query/{modelName}QueryMapper.xml
+#  - templateName: sql-command-xml.ftl
+#    targetFileName: /abao-service/src/main/resources/sqlmap//{prefix}/command/{modelName}CommandMapper.xml
+  #repository
+  - templateName: abao/repository.ftl
+    targetFileName: /abao-service/src/main/groovy/com/cheche365/abao/service/repository/I{modelName}Repository.groovy
+#  - templateName: mapper-query.ftl
+#    targetFileName: /abao-service/src/main/groovy/com/cheche365/abao/repository/{prefix}/query/{modelName}QueryMapper.java
+#  - templateName: mapper-command.ftl
+#    targetFileName: /abao-service/src/main/groovy/com/cheche365/abao/repository/{prefix}/command/{modelName}CommandMapper.java
+  #service
+  - templateName: abao/service.ftl
+    targetFileName: /abao-service/src/main/groovy/com/cheche365/abao/service/I{modelName}Service.groovy
+  - templateName: abao/service-impl.ftl
+    targetFileName: /abao-service/src/main/groovy/com/cheche365/abao/service/impl/{modelName}Service.groovy
+  #controller
+  - templateName: abao/controller.ftl
+    targetFileName: /abao-rest/src/main/groovy/com/cheche365/abao/controller/api/I{modelName}.groovy
+  - templateName: abao/controller-impl.ftl
+    targetFileName: /abao-rest/src/main/groovy/com/cheche365/abao/controller/impl/{modelName}.groovy
+  - templateName: abao/controller-dto.ftl
+    targetFileName: /abao-rest/src/main/groovy/com/cheche365/abao/service/dto/D{modelName}.groovy
+  - templateName: abao/service-facade.ftl
+    targetFileName: /abao-rest/src/main/groovy/com/cheche365/abao/service/api/I{modelName}ServiceFacade.groovy
+  - templateName: abao/service-facade-impl.ftl
+    targetFileName: /abao-rest/src/main/groovy/com/cheche365/abao/service/impl/{modelName}ServiceFacade.groovy
+  #test
+  - templateName: abao/test-service.ftl
+    targetFileName: /abao-service/src/test/groovy/com/cheche365/abao/service/impl/{modelName}FT_01.groovy
+  - templateName: abao/test-service-data.ftl
+    targetFileName: /abao-service/src/test/resources/com/cheche365/abao/service/impl/{tableName}_ft_01_data.gcfg
+  #test-doc
+  #todo
