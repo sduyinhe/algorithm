@@ -8,7 +8,7 @@ package com.galaxy.algorithm;
 public class TestWater {
     int amountOfWater = 1;
     int amountOfExchange = 2;
-    int initialAmount = 210;
+    int initialAmount = 20;
     int countOfWater = 0;
 
     public static void main(String[] args) {

@@ -38,13 +38,16 @@ public class QrcodeUtil {
 
         try {
             //QRReader(new File("D:\\Download\\cms\\jeecms-parent\\jeecms-front\\src\\main\\webapp\\sr\\itg\\abao\\cms\\www\\202004\\26144931ppd2.jpg"));
-            QREncodeNoLogo();
-            QRReader(new File("D:\\test\\zxingNoLogo.jpg"));
+            //QREncodeNoLogo();
+            //QRReader(new File("D:\\test\\zx-guyue.jpg"));
+            QREncode();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        } catch (WriterException e) {
+        }
+//        catch (NotFoundException e) {
+//            e.printStackTrace();
+//        }
+        catch (WriterException e) {
             e.printStackTrace();
         }
     }
@@ -53,7 +56,7 @@ public class QrcodeUtil {
      * 生成二维码
      */
     public static void QREncode() throws WriterException, IOException {
-        String content = "https://docs.qq.com/sheet/DTklLWExHSG5OUElz?c=I9A0A0";//二维码内容
+        String content = "https://docs.qq.com/doc/DTk5iUGJuV0twdmF1";//二维码内容
         int width = 270; // 图像宽度
         int height = 270; // 图像高度
         String format = "gif";// 图像类型
@@ -65,7 +68,7 @@ public class QrcodeUtil {
         //设置二维码边的空度，非负数
         hints.put(EncodeHintType.MARGIN, 0);
         BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);
-        MatrixToImageWriter.writeToPath(bitMatrix, format, new File("D:\\test\\zxing.png").toPath());// 输出原图片
+        MatrixToImageWriter.writeToPath(bitMatrix, format, new File("D:\\test\\st.png").toPath());// 输出原图片
         MatrixToImageConfig matrixToImageConfig = new MatrixToImageConfig(0xFF000001, 0xFFFFFFFF);
         /*
             问题：生成二维码正常,生成带logo的二维码logo变成黑白
@@ -75,7 +78,7 @@ public class QrcodeUtil {
         //BufferedImage bufferedImage = LogoMatrix(MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig), new File("D:\\test\\logo.png"));
 //        BufferedImage bufferedImage = LogoMatrix(toBufferedImage(bitMatrix), new File("D:\\logo.png"));
         BufferedImage dealedImage = dealBufferedImage(dealWhiteBorder(MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig), bitMatrix.getEnclosingRectangle()));
-        ImageIO.write(LogoMatrix(dealedImage, new File("D:\\test\\logo.png")), "gif", new File("D:\\test\\zxing1.png"));//输出带logo图片
+        ImageIO.write(LogoMatrix(dealedImage, new File("D:\\test\\yhw.jpg")), "gif", new File("D:\\test\\st1.png"));//输出带logo图片
         System.out.println("输出成功.");
     }
 
