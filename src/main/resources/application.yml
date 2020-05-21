@@ -80,3 +80,7 @@ spring:
   #  static-path-pattern: /**
   #resources:
   #  static-locations: /static/
+crm:
+  resource:
+    file-root-path: D:/test/nginx/
+    url-root-path: /sr/itg/crm/

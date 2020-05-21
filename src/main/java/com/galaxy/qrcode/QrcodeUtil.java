@@ -52,29 +52,27 @@ public class QrcodeUtil {
 //                    e.printStackTrace();
 //                } catch (NotFoundException e) {
 //                    System.out.println("无法解析的文件" + files[i].getName());
-//                    try {
-//                        QRReaderWithPureBarcode(files[i]);
-//                    } catch (IOException ex) {
-//                        ex.printStackTrace();
-//                    } catch (NotFoundException ex) {
-//                        System.out.println("仍然无法解析"+files[i].getName());
-//                        ex.printStackTrace();
-//                    }
+////                    try {
+////                        QRReaderWithPureBarcode(files[i]);
+////                    } catch (IOException ex) {
+////                        ex.printStackTrace();
+////                    } catch (NotFoundException ex) {
+////                        System.out.println("仍然无法解析"+files[i].getName());
+////                        ex.printStackTrace();
+////                    }
 //                    e.printStackTrace();
 //                }
 //            }
 //        }
 
-//        catch (WriterException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
     /**
      * 生成二维码
      */
     public static void QREncode() throws WriterException, IOException {
-        String content = "https://docs.qq.com/doc/DTk5iUGJuV0twdmF1";//二维码内容
+        String content = "http://note.youdao.com/noteshare?id=e0212f03e39b43e3f6adc6952edf8e44&sub=FA1E5BEBAE6E4C4E8C01148DF7361DF1";//二维码内容
         int width = 270; // 图像宽度
         int height = 270; // 图像高度
         String format = "gif";// 图像类型
