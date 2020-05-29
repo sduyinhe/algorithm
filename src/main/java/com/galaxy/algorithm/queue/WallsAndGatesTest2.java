@@ -1,5 +1,9 @@
 package com.galaxy.algorithm.queue;
 
+import com.google.common.collect.ImmutableMap;
+
+import java.util.*;
+
 /**
  * 题目描述
  * 你被给定一个 m × n 的二维网格，网格中有以下三种可能的初始化值：
@@ -23,9 +27,74 @@ package com.galaxy.algorithm.queue;
  * 换言之，我们从门开始做宽度优先搜索。由于宽度优先搜索保证我们在搜索 d + 1 距离的位置时， 距离为 d 的位置都已经被搜索过了，所以到达每一个房间的时候都一定是最短距离。
  */
 public class WallsAndGatesTest2 {
-    public static Integer INF = Integer.MAX_VALUE;
-    public static Integer WALL = -1;
-    public static Integer GATE = 0;
+    private static final int EMPTY = Integer.MAX_VALUE;
+    private static final int GATE = 0;
+    private static final int WALL = -1;
+    private static final List<int[]> DIRECTIONS = Arrays.asList(
+            new int[]{1, 0},
+            new int[]{-1, 0},
+            new int[]{0, 1},
+            new int[]{0, -1}
+    );
 
+    public static void main(String[] args) {
+        int[][] rooms = new int[2][2];
+        rooms[0][0] = Integer.MAX_VALUE;
+        rooms[0][1] = -1;
+        rooms[1][0] = Integer.MAX_VALUE;
+        rooms[1][1] = 0;
+        WallsAndGatesTest wallsAndGatesTest = new WallsAndGatesTest();
+        wallsAndGatesTest.wallsAndGates(rooms);
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                System.out.print(rooms[i][j] + " ");
+            }
+            System.out.println("");
+        }
+    }
+
+    public void wallsAndGates(int[][] rooms) {
+        if (rooms.length == 0) return;
+        for (int row = 0; row < rooms.length; row++) {
+            for (int col = 0; col < rooms[0].length; col++) {
+                if (rooms[row][col] == EMPTY) {
+                    rooms[row][col] = distanceToNearestGate(rooms, row, col);
+                }
+            }
+        }
+    }
+
+    private int distanceToNearestGate(int[][] rooms, int startRow, int startCol) {
+        Queue<Map<String, Integer>> queue = new LinkedList<>();
+        Map<String, Integer> point = new HashMap<>();
+        point.put("row", startRow);
+        point.put("col", startCol);
+        int m = rooms.length;
+        int n = rooms[0].length;
+        //这个二维数组不需要，直接用dis就可以了
+        int[][] distance = new int[m][n];
+        int dis = 0;
+
+        queue.add(point);
+        while (!queue.isEmpty()) {
+            Map<String, Integer> tmpPoint = queue.poll();
+            int r = tmpPoint.get("row");
+            int c = tmpPoint.get("col");
+            dis++;
+            for (int[] direction : DIRECTIONS) {
+                r += direction[0];
+                c += direction[1];
+                if (r < 0 || c < 0 || r > m || c > n || rooms[r][c] == WALL) {
+                    continue;
+                }
+                if (rooms[r][c] == GATE) {
+                    distance[r][c] = dis;
+                    return distance[r][c];
+                }
+                queue.add(ImmutableMap.of("row", r, "col", c));
+            }
+        }
+        return Integer.MAX_VALUE;
+    }
 
 }

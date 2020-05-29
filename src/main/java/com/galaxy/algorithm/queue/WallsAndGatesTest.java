@@ -43,9 +43,12 @@ public class WallsAndGatesTest {
         rooms[1][1]=0;
         WallsAndGatesTest wallsAndGatesTest = new WallsAndGatesTest();
         wallsAndGatesTest.wallsAndGates(rooms);
-       for(int i=0;i<2;i++)
-           for(int j=0;j<2;j++)
-               System.out.println(rooms[i][j]+" ");
+       for(int i=0;i<2;i++) {
+           for (int j = 0; j < 2; j++) {
+               System.out.print(rooms[i][j] + " ");
+           }
+           System.out.println("");
+       }
     }
     public void wallsAndGates(int[][] rooms) {
         if (rooms.length == 0) return;

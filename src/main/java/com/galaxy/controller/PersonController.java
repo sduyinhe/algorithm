@@ -1,5 +1,6 @@
 package com.galaxy.controller;
 
+import com.galaxy.annotation.Description;
 import com.galaxy.entity.PersonInfo;
 import com.galaxy.entity.InternalUser;
 import com.galaxy.service.ClearCacheService;
@@ -95,5 +96,16 @@ public class PersonController {
         for (Map.Entry entry : multiChildServiceMap.entrySet()) {
             System.out.println("key=" + entry.getKey() + ",value=" + entry.getValue());
         }
+    }
+
+    @GetMapping(value = "/testAnnotation")
+    @Description(desc = "你好", author = "yhw", age = 19)
+    public void testAnnotation(String hello) {
+        System.out.println("test annotation!");
+    }
+
+    @GetMapping(value = "/testAnnotationNoAspect")
+    public void testAnnotationNoAspect() {
+        System.out.println("没使用切面处理的方法!");
     }
 }
