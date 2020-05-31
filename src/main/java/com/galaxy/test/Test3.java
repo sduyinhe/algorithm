@@ -21,5 +21,7 @@ public class Test3 {
                 System.out.println("数字的默认值为:" + array[i][j]);
             }
         }
+        String str = "hello";
+        System.out.println("返回值为"+str.substring(4));
     }
 }

@@ -71,7 +71,7 @@ public class WallsAndGatesTest2 {
         point.put("col", startCol);
         int m = rooms.length;
         int n = rooms[0].length;
-        //这个二维数组不需要，直接用dis就可以了
+        //这个二维数组不需要，直接用dis就可以了。@TODO这里有问题，要使用二维数组。
         int[][] distance = new int[m][n];
         int dis = 0;
 
