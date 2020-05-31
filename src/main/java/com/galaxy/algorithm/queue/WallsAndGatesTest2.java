@@ -78,12 +78,12 @@ public class WallsAndGatesTest2 {
         queue.add(point);
         while (!queue.isEmpty()) {
             Map<String, Integer> tmpPoint = queue.poll();
-            int r = tmpPoint.get("row");
-            int c = tmpPoint.get("col");
+            int row = tmpPoint.get("row");
+            int col = tmpPoint.get("col");
             dis++;
             for (int[] direction : DIRECTIONS) {
-                r += direction[0];
-                c += direction[1];
+                int r = row + direction[0];
+                int c = col + direction[1];
                 if (r < 0 || c < 0 || r > m || c > n || rooms[r][c] == WALL) {
                     continue;
                 }

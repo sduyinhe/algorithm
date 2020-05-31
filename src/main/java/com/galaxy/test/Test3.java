@@ -21,5 +21,8 @@ public class Test3 {
                 System.out.println("数字的默认值为:" + array[i][j]);
             }
         }
+
+
+        char[][] chars = {};
     }
 }
