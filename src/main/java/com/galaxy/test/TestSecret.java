@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 
 public class TestSecret {
     public static void main(String[] args) {
-        String data = "{\"payOrderId\":\"000000043\",\"payOrderNo\":\"PN10003243412339\",\"paymentAmount\":0.01,\"status\":4,\"payTime\":\"2020-03-04 12:22:34\",\"channel\":\"yhw123\"}";
+        String data = "{\"payOrderId\":\"000000047\",\"payOrderNo\":\"PN10003243412339\",\"paymentAmount\":0.01,\"status\":4,\"payTime\":\"2020-03-04 12:22:34\",\"channel\":\"yhw123\"}";
         long timestamp = 1583463267107L;//我们取你传的时间戳
         String appKey = "chechezhifu";
         String secretKey = "5f28af890cd64d23bc83f1d61b3a0918";//我们取你传的appKey对应的秘钥。
@@ -14,6 +14,9 @@ public class TestSecret {
         System.out.println(getMD5String(str));
     }
 
+    String getMD5String1(String str) {
+       return null;
+    }
     public static String getMD5String(String str) {
         try {
             // 生成一个MD5加密计算摘要

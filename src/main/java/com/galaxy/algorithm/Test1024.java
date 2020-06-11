@@ -25,7 +25,10 @@ public class Test1024 {
 //        Pattern pattern = Pattern.compile(reg);
 //        Matcher m = pattern.matcher(source);
 //        System.out.println("匹配结果为"+m.matches());
-        System.out.println("10592:男_10593:0周岁_10598:30年_10599:至70周岁".hashCode());
+        String reg = "^33[0-9]*$";
+        Pattern pattern = Pattern.compile(reg);
+        System.out.println(pattern.matcher("1331").matches());
+        //System.out.println("10592:男_10593:0周岁_10598:30年_10599:至70周岁".hashCode());
     }
 
     public static String stringToAscii(String value)

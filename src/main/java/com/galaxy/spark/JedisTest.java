@@ -50,7 +50,9 @@ public class JedisTest {
 ////        System.out.println(jedis.sort("name"));
 //        String[] strings = {"hello4", "hello5"};
 //        jedis.del("name");
-//        jedis.sadd("name", "hello1");
+        String str = jedis.get("abao-token-Abao_Register_Token_086c72ad-b25e-47d3-9392-181c0785c043");
+        System.out.println("str值为"+str);
+//         jedis.set("abao-token-Abao_Register_Token_086c72ad-b25e-47d3-9392-181c0785c043", "hello1");
 //        jedis.sadd("name", "hello2");
 //        jedis.sadd("name", "hello3");
 //        jedis.sadd("name", strings);
@@ -72,7 +74,7 @@ public class JedisTest {
 //            e.printStackTrace();
 //        }
 
-        testJedis2(jedis);
+        //testJedis2(jedis);
     }
 
     /**

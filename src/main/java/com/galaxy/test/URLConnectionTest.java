@@ -10,7 +10,7 @@ public class URLConnectionTest {
         try {
             Integer dataId = 1;
             //URL url = new URL("https://w.url.cn/s/ApapkGr");
-            URL url = new URL("https://w.url.cn/s/ANHtZ9R");
+            URL url = new URL("https://w.url.cn/s/AsZelVt");
             URLConnection connection = url.openConnection();
             String location = connection.getHeaderField("Location");
             if (location == null) {
@@ -39,4 +39,5 @@ public class URLConnectionTest {
 
         }
     }
+
 }
