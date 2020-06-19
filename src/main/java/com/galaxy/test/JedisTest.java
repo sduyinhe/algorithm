@@ -1,5 +1,6 @@
-package com.galaxy.spark;
+package com.galaxy.test;
 
+import com.galaxy.spark.RedisUtil;
 import org.apache.spark.ml.linalg.Vectors;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.SortingParams;
@@ -50,9 +51,11 @@ public class JedisTest {
 ////        System.out.println(jedis.sort("name"));
 //        String[] strings = {"hello4", "hello5"};
 //        jedis.del("name");
-        String str = jedis.get("abao-token-Abao_Register_Token_086c72ad-b25e-47d3-9392-181c0785c043");
-        System.out.println("str值为"+str);
-//         jedis.set("abao-token-Abao_Register_Token_086c72ad-b25e-47d3-9392-181c0785c043", "hello1");
+//        String str = jedis.get("abao-token-Abao_Register_Token_086c72ad-b25e-47d3-9392-181c0785c043");
+//        System.out.println("str值为" + str);
+//        jedis.set("abao-token-024cf802-ed18-4c01-88e1-d18a09513eb4", "hello1");
+        System.out.println(jedis.smembers("spring:session:admin:index:org.springframework.session.FindByIndexNameSessionRepository.PRINCIPAL_NAME_INDEX_NAME:liuyang@cheche365.com"));
+        //jedis.set("abao-token-Abao_Register_Token_187e046d-ec4a-4018-b5bf-9483a159ecbd","{\"user\":{\"updateTime\":null,\"mobile\":\"17092166518\",\"province\":\"\",\"member\":null,\"nickName\":null,\"id\":356,\"sex\":null,\"headImgUrl\":null,\"createTime\":null,\"logicalDel\":false,\"channel\":\"abao\",\"city\":\"\",\"password\":null,\"account\":null,\"language\":null,\"country\":\"\",\"enabled\":true,\"source\":\"_HOME_CUSTOM_SERVICE\",\"unionId\":null},\"token\":\"187e046d-ec4a-4018-b5bf-9483a159ecbb\",\"registerInfo\":{\"authSource\":\"_A_BAO_INSURANCE\",\"updateTime\":null,\"userId\":156,\"registerNo\":\"17092166518\",\"id\":152,\"createTime\":null,\"registerType\":\"_MOBILE\"}}");
 //        jedis.sadd("name", "hello2");
 //        jedis.sadd("name", "hello3");
 //        jedis.sadd("name", strings);

@@ -8,6 +8,7 @@ import com.galaxy.service.MultiChildService;
 import com.galaxy.service.PersonService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -107,5 +108,12 @@ public class PersonController {
     @GetMapping(value = "/testAnnotationNoAspect")
     public void testAnnotationNoAspect() {
         System.out.println("没使用切面处理的方法!");
+    }
+
+    @CacheEvict(value = "algorithmUser1", beforeInvocation = true, allEntries = true, condition = "#id==1")
+    @GetMapping(value = "/refresh/{id}")
+    public void refresh(@PathVariable("id") Integer id) {
+        // personService.findByUserId(id);
+        System.out.println("测试缓存刷新" + id);
     }
 }

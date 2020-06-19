@@ -23,7 +23,7 @@ public class InternalUser implements Serializable {
     //如果不指定外键（不写JoinColumn)，hibernate自动帮你生成你指向这个类的类名加上下划线再加上id的列，也就是person_info_id
     @JoinColumn(name = "person_info")
     //jackson需要排除，否则会导致死循环。但是实体中是有这个数据的，转换后的json里面没有。
-    //@JsonIgnore
+    @JsonIgnore
     private PersonInfo personInfo;
     private String password;
     private String account;

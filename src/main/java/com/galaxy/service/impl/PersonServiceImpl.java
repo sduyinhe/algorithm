@@ -70,6 +70,10 @@ public class PersonServiceImpl implements PersonService {
     @Cacheable(value = "algorithmUser1", key = "targetClass.name+#p0", condition = "true")
     public InternalUser findByUserId(Integer id) {
         InternalUser result = userRepository.findById(id.longValue()).get();
+        //增加不存在id的缓存，防止mysql被穿透
+        if(result == null){
+            result = new InternalUser();
+        }
         return result;
     }
 

@@ -23,13 +23,16 @@ import java.util.Map;
  */
 public class QrcodeUtil {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, NotFoundException {
         try {
             long time1 = System.currentTimeMillis();
-            QREncode();
+            String content = "https://weixin.qq.com/g/AQYAAF6exNycaCHE32mK60xtTnFDDRXzZwCXhmhxtd4ZbLdybkPGvkYUYjJzsgLZ";
+            String logoPath = "D:\\test\\anye.jpg";
+            String desPath = "D:\\test\\nvwang.png";
+            QREncode(content, logoPath, desPath);
             System.out.println("生成二维码耗时：" + (System.currentTimeMillis() - time1));
 
-            QRReader(new File("D:\\test\\st1.png"));
+            QRReader(new File("D:\\test\\nvwang1.png"));
         } catch (WriterException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -38,6 +41,8 @@ public class QrcodeUtil {
             //二维码无法识别会抛出该异常
             e.printStackTrace();
         }
+
+        //  QRReader(new File("D:\\test\\nvwang1.png"));
         //p1ssogou.png p2s360.png
 //        File fileDirectory = new File("D:\\test\\toProduct");
 //        if (fileDirectory.isDirectory()) {
@@ -71,8 +76,8 @@ public class QrcodeUtil {
     /**
      * 生成二维码
      */
-    public static void QREncode() throws WriterException, IOException {
-        String content = "http://note.youdao.com/noteshare?id=e0212f03e39b43e3f6adc6952edf8e44&sub=FA1E5BEBAE6E4C4E8C01148DF7361DF1";//二维码内容
+    public static void QREncode(String content, String logoPath, String desPath) throws WriterException, IOException {
+        //String content = "https://weixin.qq.com/g/AQYAAF6exNycaCHE32mK60xtTnFDDRXzZwCXhmhxtd4ZbLdybkPGvkYUYjJzsgLZ";//二维码内容
         int width = 270; // 图像宽度
         int height = 270; // 图像高度
         String format = "gif";// 图像类型
@@ -94,7 +99,7 @@ public class QrcodeUtil {
         //BufferedImage bufferedImage = LogoMatrix(MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig), new File("D:\\test\\logo.png"));
 //        BufferedImage bufferedImage = LogoMatrix(toBufferedImage(bitMatrix), new File("D:\\logo.png"));
         BufferedImage dealedImage = dealBufferedImage(dealWhiteBorder(MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig), bitMatrix.getEnclosingRectangle()));
-        ImageIO.write(LogoMatrix(dealedImage, new File("D:\\test\\yhw.jpg")), "gif", new File("D:\\test\\st1.png"));//输出带logo图片
+        ImageIO.write(LogoMatrix(dealedImage, new File(logoPath)), "gif", new File(desPath));//输出带logo图片
         System.out.println("输出成功.");
     }
 
