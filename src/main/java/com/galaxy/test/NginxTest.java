@@ -13,8 +13,8 @@ public class NginxTest {
 
     final List<String> sem3Url = new ArrayList<>();
     final List<String> sem1Url = new ArrayList<>();
-    public static final String SEM_3_STR = "GET /article";
-    public static final String SEM_1_STR = "GET /article/article-1-";
+    public static final String SEM_3_STR = "GET /rest/api/article";
+    public static final String SEM_1_STR = "GET /rest/api/article/article-";
 
     //读取文件内容
     public String readFileContent(String fileName) {
@@ -25,14 +25,14 @@ public class NginxTest {
             reader = new BufferedReader(new FileReader(file));
             String tempStr;
             while ((tempStr = reader.readLine()) != null) {
-                if (tempStr.contains(SEM_3_STR)) {
+                if (tempStr.contains(SEM_3_STR) && !tempStr.contains(SEM_1_STR)) {
                     //System.out.println(tempStr);
                     // sem3Url.add(URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1))));
                     //查找时间
                     String timeStr = tempStr.substring(tempStr.indexOf(" +0800") - 20, tempStr.indexOf(" +0800")).replace("2020:", "2020 ");
                     String resumeStr = tempStr.substring(tempStr.indexOf("HTTP/1.1][") + 10, tempStr.indexOf("]", tempStr.indexOf("HTTP/1.1][") + 10));
-                    String ipStr = tempStr.substring(tempStr.indexOf("[")+1,tempStr.indexOf("]"));
-                    sem3Url.add(ipStr+","+timeStr + "," + URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1))) + "," + resumeStr);
+                    String ipStr = tempStr.substring(tempStr.indexOf("[") + 1, tempStr.indexOf("]"));
+                    sem3Url.add(ipStr + "," + timeStr + "," + URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1))) + "," + resumeStr);
                     if (tempStr.indexOf(".html?") > 0) {
                         //sem3Url.add(timeStr+","+URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf(".html?")))));
                     } else {
@@ -65,16 +65,16 @@ public class NginxTest {
 //        String tempStr = "GET /article/article-3-36726.html?utm_source=baidu&utm_medium=PC%2D%E9%87%8D%E7%96%BE%E9%99%A9%2D%E7%96%91%E9%97%AE%E8%AF%8D&utm_campaign=%E9%87%8D%E7%96%BE%2D%E7%96%91%E9%97%AE&utm_term=%E5%9B%BD%E5%AE%B6%E4%BF%9D%E9%99%A9%E5%85%AC% HTTP/1.1";
 //        System.out.println(URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1))));
         NginxTest semTest = new NginxTest();
-        File file = new File("D:\\test\\2020年6月7日生产重启分析\\access_abao1.log-20200608");
+        File file = new File("D:\\test\\2020年6月22日生产小程序日志分析");
 //        Arrays.stream(file.listFiles()).forEach(ele -> {
 //            System.out.println(ele.getPath());
 //        });
-//        Arrays.stream(file.listFiles()).forEach(ele -> {
-//            semTest.readFileContent(ele.getPath());
-//        });
-        semTest.readFileContent(file.getPath());
+        Arrays.stream(file.listFiles()).forEach(ele -> {
+            semTest.readFileContent(ele.getPath());
+        });
+        //semTest.readFileContent(file.getPath());
 
-        File fileOut = new File("D:\\test\\2020年6月7日生产重启分析\\article_result.txt");
+        File fileOut = new File("D:\\test\\2020年6月22日生产小程序日志分析\\article_result.txt");
         try {
             if (!fileOut.exists()) {
                 fileOut.createNewFile();
