@@ -7,6 +7,7 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class SemTest {
@@ -24,17 +25,23 @@ public class SemTest {
         try {
             reader = new BufferedReader(new FileReader(file));
             String tempStr;
+            String htmlStr;
             while ((tempStr = reader.readLine()) != null) {
                 if (tempStr.contains(SEM_3_STR)) {
                     //System.out.println(tempStr);
                     // sem3Url.add(URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1))));
                     //查找时间
-                    String timeStr = tempStr.substring(tempStr.indexOf(" +0800") - 20, tempStr.indexOf(" +0800")).replace("2020:","2020 ");
-                    sem3Url.add(timeStr+","+URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1))));
-                    if (tempStr.indexOf(".html?") > 0) {
-                        //sem3Url.add(timeStr+","+URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf(".html?")))));
-                    } else {
-                        //sem3Url.add(timeStr+","+URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf(".html")))));
+                    //String timeStr = tempStr.substring(tempStr.indexOf(" +0800") - 20, tempStr.indexOf(" +0800")).replace("2020:", "2020 ");
+                    //sem3Url.add(timeStr + "," + URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1))));
+                    try {
+                        htmlStr = tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1);
+                        if (htmlStr.indexOf("?") > 0) {
+                            sem3Url.add(htmlStr.substring(0, htmlStr.indexOf("?")));
+                        } else {
+                            sem3Url.add(htmlStr);
+                        }
+                    } catch (StringIndexOutOfBoundsException ex) {
+                        System.out.println("error:" + tempStr);
                     }
                 }
                 sbf.append(tempStr);
@@ -63,7 +70,7 @@ public class SemTest {
 //        String tempStr = "GET /article/article-3-36726.html?utm_source=baidu&utm_medium=PC%2D%E9%87%8D%E7%96%BE%E9%99%A9%2D%E7%96%91%E9%97%AE%E8%AF%8D&utm_campaign=%E9%87%8D%E7%96%BE%2D%E7%96%91%E9%97%AE&utm_term=%E5%9B%BD%E5%AE%B6%E4%BF%9D%E9%99%A9%E5%85%AC% HTTP/1.1";
 //        System.out.println(URLDecoder.decode(convertPercent(tempStr.substring(tempStr.indexOf(SEM_3_STR), tempStr.indexOf("HTTP/1.1") - 1))));
         SemTest semTest = new SemTest();
-        File file = new File("D:\\test\\rest问题查询\\SEM问题查询");
+        File file = new File("D:\\test\\nginx问题汇总\\");
 //        Arrays.stream(file.listFiles()).forEach(ele -> {
 //            System.out.println(ele.getPath());
 //        });
@@ -71,16 +78,21 @@ public class SemTest {
             semTest.readFileContent(ele.getPath());
         });
 
-        File fileOut = new File("D:\\test\\rest问题查询\\SEM问题查询\\result.txt");
+        File fileOut = new File("D:\\test\\nginx问题汇总\\result.txt");
         try {
             if (!fileOut.exists()) {
                 fileOut.createNewFile();
             }
             final FileWriter fw = new FileWriter(fileOut);
-
-            semTest.getSem3Url().forEach(ele -> {
+            List<String> stringList = semTest.getSem3Url();
+            stringList = stringList.stream().map(ele -> {
+                ele = ele.replace("GET ", "https://www.abaobaoxian.com");
+                return ele;
+            }).collect(Collectors.toList());
+            stringList = stringList.stream().distinct().collect(Collectors.toList());
+            stringList.forEach(ele -> {
                 try {
-                    fw.write(ele.replace("GET ", "https://www.abaobaoxian.com") + "\r\n");
+                    fw.write(ele + "\r\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
