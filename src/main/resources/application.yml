@@ -84,3 +84,80 @@ crm:
   resource:
     file-root-path: D:/test/nginx/
     url-root-path: /sr/itg/crm/
+galaxy:
+  redisson:
+    codec: org.redisson.codec.FstCodec
+    threads: 5
+    nettyThreads: 5
+    transportMode: NIO
+    lockWatchdogTimeout: 3000
+    model: "SINGLE"
+    singleServerConfig:
+      idleConnectionTimeout: 10000
+      connectTimeout: 10000
+      timeout: 3000
+      retryAttempts: 3
+      retryInterval: 1500
+      password: null
+      subscriptionsPerConnection: 5
+      clientName: "redis1"
+      address: "redis://192.168.2.81:6379"
+      subscriptionConnectionMinimumIdleSize: 1
+      subscriptionConnectionPoolSize: 50
+      connectionMinimumIdleSize: 24
+      connectionPoolSize: 64
+      database: 0
+      dnsMonitoringInterval: 5000
+    sentinelServersConfig:
+      idleConnectionTimeout: 10000
+      connectTimeout: 10000
+      timeout: 3000
+      retryAttempts: 3
+      retryInterval: 1500
+      failedSlaveReconnectionInterval: 3000
+      failedSlaveCheckInterval: 60000
+      password: null
+      subscriptionsPerConnection: 5
+      clientName: null
+      loadBalancer: org.redisson.connection.balancer.RoundRobinLoadBalancer
+      subscriptionConnectionMinimumIdleSize: 1
+      subscriptionConnectionPoolSize: 50
+      slaveConnectionMinimumIdleSize: 24
+      slaveConnectionPoolSize: 64
+      masterConnectionMinimumIdleSize: 24
+      masterConnectionPoolSize: 64
+      readMode: "SLAVE"
+      subscriptionMode: "SLAVE"
+      sentinelAddresses:
+        - "redis://127.0.0.1:26379"
+        - "redis://127.0.0.1:26389"
+      masterName: "mymaster"
+      database: 0
+    masterSlaveServersConfig:
+      idleConnectionTimeout: 10000
+      connectTimeout: 10000
+      timeout: 3000
+      retryAttempts: 3
+      retryInterval: 1500
+      failedSlaveReconnectionInterval: 3000
+      failedSlaveCheckInterval: 60000
+      password: null
+      subscriptionsPerConnection: 5
+      clientName: null
+      loadBalancer: org.redisson.connection.balancer.RoundRobinLoadBalancer
+      subscriptionConnectionMinimumIdleSize: 1
+      subscriptionConnectionPoolSize: 50
+      slaveConnectionMinimumIdleSize: 24
+      slaveConnectionPoolSize: 64
+      masterConnectionMinimumIdleSize: 24
+      masterConnectionPoolSize: 64
+      readMode: "SLAVE"
+      subscriptionMode: "SLAVE"
+      slaveAddresses:
+        - "redis://127.0.0.1:6381"
+        - "redis://127.0.0.1:6380"
+      masterAddress: "redis://127.0.0.1:6379"
+      database: 0
+#    proxyServersConfig:
+#    replicatedServersConfig：
+#    clusterServersConfig:

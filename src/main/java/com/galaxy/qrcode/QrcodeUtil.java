@@ -23,26 +23,35 @@ import java.util.Map;
  */
 public class QrcodeUtil {
 
-    public static void main(String[] args) throws IOException, NotFoundException {
-        try {
-            long time1 = System.currentTimeMillis();
-            String content = "https://weixin.qq.com/g/AQYAAF6exNycaCHE32mK60xtTnFDDRXzZwCXhmhxtd4ZbLdybkPGvkYUYjJzsgLZ";
-            String logoPath = "D:\\test\\anye.jpg";
-            String desPath = "D:\\test\\nvwang.png";
-            QREncode(content, logoPath, desPath);
-            System.out.println("生成二维码耗时：" + (System.currentTimeMillis() - time1));
+    public static void main(String[] args) throws IOException {
+//        try {
+//            long time1 = System.currentTimeMillis();
+//            String content = "https://weixin.qq.com/g/AQYAAF6exNycaCHE32mK60xtTnFDDRXzZwCXhmhxtd4ZbLdybkPGvkYUYjJzsgLZ";
+//            String logoPath = "D:\\test\\anye.jpg";
+//            String desPath = "D:\\test\\nvwang.png";
+//            QREncode(content, logoPath, desPath);
+//            System.out.println("生成二维码耗时：" + (System.currentTimeMillis() - time1));
+//
+//            QRReader(new File("D:\\test\\nvwang1.png"));
+//        } catch (WriterException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (NotFoundException e) {
+//            //二维码无法识别会抛出该异常
+//            e.printStackTrace();
+//        }
 
-            QRReader(new File("D:\\test\\nvwang1.png"));
-        } catch (WriterException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        try {
+            QRReader(new File("D:\\test\\faheyouwentiBIG.jpg"));
         } catch (NotFoundException e) {
-            //二维码无法识别会抛出该异常
             e.printStackTrace();
         }
-
-        //  QRReader(new File("D:\\test\\nvwang1.png"));
+//        try {
+//            QRReader(new File("D:\\test\\agui2.jpg"));
+//        } catch (NotFoundException e) {
+//            e.printStackTrace();
+//        }
         //p1ssogou.png p2s360.png
 //        File fileDirectory = new File("D:\\test\\toProduct");
 //        if (fileDirectory.isDirectory()) {
@@ -108,15 +117,29 @@ public class QrcodeUtil {
      */
     public static void QRReader(File file) throws IOException, NotFoundException {
         MultiFormatReader formatReader = new MultiFormatReader();
+
+        //首先去除白边，解决由于白边区域过大导致二维码无法识别的问题
+        ImageUtil2 trim = new ImageUtil2(file);
         //读取指定的二维码文件
-        BufferedImage bufferedImage = ImageIO.read(file);
+        BufferedImage bufferedImage = trim.trim();
+        //BufferedImage bufferedImage = ImageIO.read(file);
         BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(new BufferedImageLuminanceSource(bufferedImage)));
         //定义二维码参数
         Map hints = new HashMap<>();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-//        hints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
-//        hints.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
-        com.google.zxing.Result result = formatReader.decode(binaryBitmap, hints);
+        //hints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
+        //hints.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
+
+        Result result = null;
+        try {
+            result = formatReader.decode(binaryBitmap, hints);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+            System.out.println("解析失败，尝试使用纯单色图像模式识别");
+            //尝试使用纯单色图像条码识别模式
+            hints.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
+            result = formatReader.decode(binaryBitmap, hints);
+        }
         //输出相关的二维码信息
         System.out.println("解析结果：" + result.toString());
         System.out.println("二维码格式类型：" + result.getBarcodeFormat());
@@ -136,6 +159,7 @@ public class QrcodeUtil {
         Map hints = new HashMap<>();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         //hints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
+        //设置识别纯单色图像条码（png的会有问题，但是jpg的没问题）
         hints.put(DecodeHintType.PURE_BARCODE, Boolean.TRUE);
         com.google.zxing.Result result = formatReader.decode(binaryBitmap, hints);
         //输出相关的二维码信息

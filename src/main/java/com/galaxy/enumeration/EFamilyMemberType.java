@@ -1,4 +1,4 @@
-package com.cheche.crm.enums;
+package com.galaxy.enumeration;
 
 import lombok.Getter;
 

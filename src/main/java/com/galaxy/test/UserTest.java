@@ -42,17 +42,21 @@ public class UserTest {
         List<String> pathList = Arrays.asList(str0, str1, str9, strJ0, strJ1, strJ9);
         //梧桐树
 //        userList.forEach(user -> {
-//            Set<Map.Entry<String, String>> sets = pathMap.entrySet();
-//            for (Map.Entry<String, String> entry : sets) {
-//                System.out.println(user.getId() + "\t" + user.getRealname() + "\t" + entry.getKey() + "\t" + entry.getValue() + user.getId());
+//            if (user.getStatus() == 1 && !"阿保测试".equals(user.getRealname())) {
+//                Set<Map.Entry<String, String>> sets = pathMap.entrySet();
+//                for (Map.Entry<String, String> entry : sets) {
+//                    System.out.println(user.getId() + "\t" + user.getRealname() + "\t" + entry.getKey() + "\t" + entry.getValue() + user.getId());
+//                }
 //            }
 //        });
 
         //转介绍
         userList.forEach(user -> {
-            Set<Map.Entry<String, String>> sets = pathJMap.entrySet();
-            for (Map.Entry<String, String> entry : sets) {
-                System.out.println(user.getId() + "\t" + user.getRealname() + "\t" + entry.getKey() + "\t" + entry.getValue() + user.getId());
+            if (user.getStatus() == 1 && !"阿保测试".equals(user.getRealname())) {
+                Set<Map.Entry<String, String>> sets = pathJMap.entrySet();
+                for (Map.Entry<String, String> entry : sets) {
+                    System.out.println(user.getId() + "\t" + user.getRealname() + "\t" + entry.getKey() + "\t" + entry.getValue() + user.getId());
+                }
             }
         });
     }

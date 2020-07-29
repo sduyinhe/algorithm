@@ -43,9 +43,9 @@ public class NumIsIslandsBFS {
         System.out.println("岛屿数量为：" + numIsIslands.numIslands(chars));
 
         chars[0] = "11000".toCharArray();
-        chars[1] = "11000".toCharArray();
+        chars[1] = "11001".toCharArray();
         chars[2] = "00100".toCharArray();
-        chars[3] = "00011".toCharArray();
+        chars[3] = "10011".toCharArray();
         System.out.println("岛屿数量为：" + numIsIslands.numIslands(chars));
     }
 

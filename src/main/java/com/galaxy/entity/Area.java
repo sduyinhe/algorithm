@@ -1,6 +1,5 @@
-package com.cheche.crm.model.sys;
+package com.galaxy.entity;
 
-import com.cheche.crm.model.BaseMultiTenantModel;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -16,8 +15,9 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 @JsonInclude(value = Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Area extends BaseMultiTenantModel {
+public class Area{
 
+    private Integer id;
     /**
      * 父级ID
      */
@@ -66,4 +66,5 @@ public class Area extends BaseMultiTenantModel {
             this.value = value;
         }
     }
+
 }

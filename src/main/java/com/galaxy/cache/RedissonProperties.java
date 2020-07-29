@@ -1,13 +1,17 @@
 package com.galaxy.cache;
 
+import com.galaxy.enumeration.EModel;
 import io.netty.channel.EventLoopGroup;
 import lombok.Data;
 import org.redisson.config.TransportMode;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.ExecutorService;
 
 @Data
+@Component
 @ConfigurationProperties(prefix = "galaxy.redisson")
 public class RedissonProperties {
     /**
@@ -64,9 +68,9 @@ public class RedissonProperties {
     private boolean keepPubSubOrder = true;
     /**
      * 默认值：HIGHER_THROUGHPUT
-     *
+     * <p>
      * 用来指定高性能引擎的行为。由于该变量值的选用与使用场景息息相关（NORMAL除外）我们建议对每个参数值都进行尝试。
-     *
+     * <p>
      * 该参数仅限于Redisson PRO版本。
      * 可选模式：
      * HIGHER_THROUGHPUT - 将高性能引擎切换到 高通量 模式。
@@ -76,5 +80,13 @@ public class RedissonProperties {
      */
     //private PerformanceMode performanceMode;
 
+    private EModel model = EModel.SINGLE;
+
+    @NestedConfigurationProperty
+    /**
+     * NestedConfigurationProperty这个注解不加，yml也能根据配置的方式自动识别，当然加了这个注释的好处是，
+     * 告诉Spring，这不是单个值，而是一个结构体
+     */
+    private SingleServerProperties singleServerConfig;
 
 }

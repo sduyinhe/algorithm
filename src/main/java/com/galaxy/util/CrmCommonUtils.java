@@ -1,6 +1,6 @@
-package com.cheche.crm.util;
+package com.galaxy.util;
 
-import com.github.crm.exception.BadRequestException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
@@ -16,11 +16,12 @@ import java.util.List;
  * add by yhw 2020年2月27日
  * 各种常见的公共方法都放到这里
  */
+@Slf4j
 public class CrmCommonUtils {
     public static final List<String> TIME_RANGE_LIST = Arrays.asList(new String[]{
-        "9:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00",
-        "13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00",
-        "16:00 - 17:00", "17:00 - 18:00", "18:00 - 19:00"
+            "9:00 - 10:00", "10:00 - 11:00", "11:00 - 12:00",
+            "13:00 - 14:00", "14:00 - 15:00", "15:00 - 16:00",
+            "16:00 - 17:00", "17:00 - 18:00", "18:00 - 19:00"
     });
 
     /**
@@ -52,9 +53,9 @@ public class CrmCommonUtils {
                         }
                     }
                 } catch (NoSuchFieldException e) {
-                    throw new BadRequestException(e.getMessage());
+                    log.error(e.toString());
                 } catch (IllegalAccessException e) {
-                    throw new BadRequestException(e.getMessage());
+                    log.error(e.toString());
                 }
             });
         }
@@ -68,7 +69,7 @@ public class CrmCommonUtils {
      */
     public static void assertConstraint(boolean condition, String message) {
         if (!condition) {
-            throw new BadRequestException(message);
+            log.error(message);
         }
     }
 
