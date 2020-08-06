@@ -1,0 +1,66 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-model="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8"/>
+<head>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <style>
+        .border {
+            border: #ff0000 solid 15px
+        }
+
+        .font {
+            font-size: 25px;
+        }
+
+        .background {
+            background-color: blue;
+        }
+
+        .foo {
+            background-color: red;
+        }
+
+        .yhw {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+事件处理
+<div id="app1">
+    <button @click="say">点我哈</button>
+    <button @click="say('hello')">你好</button>
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+        Submit
+    </button>
+</div>
+
+<script>
+    var app1 = new Vue({
+        el: "#app1",
+        data: {
+            word: "你好吗"
+        },
+        methods: {
+            say: function (myWord) {
+                //第一个按钮会传过来一个 object MouseEvent
+                if (myWord != null && myWord != undefined) {
+                    alert(myWord)
+                } else {
+                    alert(this.word)
+                }
+            },
+            warn: function (message, event) {
+                if (event) {
+                    event.preventDefault()
+                }
+                alert(message)
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8"/>
+<head>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+
+</head>
+<body>
+<div id="app">
+    {{message}}
+</div>
+<div id="app-2">
+    <span v-bind:title="message">
+        鼠标悬停查看效果
+    </span>
+</div>
+<div id="app3">
+    <span v-if="seen">你看到我了吗</span>
+</div>
+<div id="app4">
+    <ol>
+        <li v-for="todo in todos">
+            {{todo.text}}
+        </li>
+    </ol>
+</div>
+<div id="app5">
+    <p>{{message}}</p>
+    <button @click="reverseMessage">水系字符串反转</button>
+</div>
+<div id="app6">
+    {{todos}}
+    <ol>
+        <todo-item v-for="item in todos" :todo="item" :key="item.key" :title="item.title">
+        </todo-item>
+    </ol>
+</div>
+<div id="app7"><p>{{message}}</p>
+    <input v-model="message">
+</div>
+<script>
+    let app7 = new Vue({
+        el: "#app7",
+        data: {
+            message: "鲍宪杰"
+        }
+    })
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li>{{todo.text}}</li>'
+    })
+    var app6 = new Vue({
+        el: "#app6",
+        data: {
+            todos: [
+                {text: "nihao", key: 1, title: "this is nihao"},
+                {text: "wobuhao", key: 2, title: "this is wobuhao"}
+            ]
+        }
+    })
+
+    var app5 = new Vue({
+        el: "#app5",
+        data: {
+            message: "一二三四五"
+        },
+        methods: {
+            reverseMessage: function () {
+                console.log(this)
+                this.message = this.message.split("").reverse().join("");
+            }
+        }
+    })
+    var app4 = new Vue({
+        el: "#app4",
+        data: {
+            todos: [
+                {text: "hello"},
+                {text: "i`m good boys"},
+                {text: "helandi"}
+            ]
+        }
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: "你好中国"
+        }
+    })
+    var app2 = new Vue({
+        el: "#app-2",
+        data: {
+            message: "hello china!页面加载于：" + new Date().toLocaleString()
+        }
+    })
+    var app3 = new Vue({
+        el: "#app3",
+        data: {
+            seen: true
+        }
+    })
+</script>
+</body>
+</html>

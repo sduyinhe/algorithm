@@ -1,0 +1,132 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-model="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8"/>
+<head>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <style>
+        .border {
+            border: #ff0000 solid 15px
+        }
+
+        .font {
+            font-size: 25px;
+        }
+
+        .background {
+            background-color: blue;
+        }
+
+        .foo {
+            background-color: red;
+        }
+
+        .yhw {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+列表渲染
+<ul id="ul1">
+    <li v-for="(item,index) of items" :key="item.message">{{deptName}}-{{index+1}}-{{item.message}}</li>
+</ul>
+<ul id="ul2">
+    <li v-for="(value,name,index) in myObject">{{index+1}}-{{name}}:{{value}}</li>
+</ul>
+<div id="app1">
+    <ul id="ul3" v-for="set in sets">
+        <li v-for="item in odd(set)">{{item}}</li>
+    </ul>
+</div>
+<div id="app2">
+    <span v-for="n in 1">测试数字{{n}}<br/></span>
+</div>
+<div id="todo-list-example">
+    <form>
+        <label for="newTodo">Add a todo</label>
+        <input id="newTodo" type="text" placeholder="Feed the cat" v-model="currentText">
+        <input type="submit" value="Add" @click="addNewTodo($event)">
+        <button @click.prevent="myAlert('this is the second Button',$event)">this is the second Button</button>
+        <button @click="myAlert('this is the third Button')">this is the third Button</button>
+    </form>
+    <ul>
+        <todoli v-for="(todo,index) in todos" :todo="todo" v-bind:key="todo.id"
+                v-on:remove1="todos.splice(index,1)"></todoli>
+    </ul>
+</div>
+<script>
+    Vue.component(
+        "todoli", {
+            props: ["todo"],
+            template: "<li>{{todo.text}}" +
+                "<button @click='$emit(\"remove1\")'>Remove</button>" +
+                "</li>"
+        }
+    );
+    let todo1 = new Vue({
+        el: "#todo-list-example",
+        data: {
+            currentText: '',
+            currentIndex: 2,
+            todos: [{id: 1, text: "中国"}, {id: 2, text: "万岁"}]
+        },
+        methods: {
+            addNewTodo: function (event) {
+                if (event) {
+                    event.preventDefault();
+                }
+                this.todos.push({id: ++this.currentIndex, text: this.currentText})
+            },
+            myAlert: function (data, event) {
+                alert(data);
+            }
+        }
+    });
+    new Vue({
+        el: "#app2"
+    });
+    new Vue({
+        el: "#app1",
+        data: {
+            sets: [[1, 2, 3, 4], [5, 6, 7, 8]]
+        },
+        methods: {
+            even: function (numbers) {
+                return numbers.filter(function (item) {
+                    return item % 2 == 0
+                })
+            },
+            odd: function (numbers) {
+                return numbers.filter(number => {
+                    return number % 2 != 0
+                })
+            }
+        }
+    });
+    new Vue({
+        el: "#ul1",
+        data: {
+            deptName: "阿保事业部",
+            items: [
+                {message: "测试"},
+                {message: "研发"},
+                {message: "产品"}
+            ]
+        }
+    });
+    new Vue({
+        el: "#ul2",
+        data: {
+            myObject: {
+                name: "yhw",
+                task: "feature_6639",
+                time: "today"
+            }
+        }
+    })
+</script>
+</body>
+</html>

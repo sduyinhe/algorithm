@@ -1,0 +1,40 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8"/>
+<head>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+
+</head>
+<body>
+<div id="app1"><p>{{message}}</p>
+    <p>{{reversedMessage}}</p>
+    <p>通过计算属性得到的当前时间为:{{nowByComputed}}</p>
+    <p>通过方法得到的当前时间为:{{nowByMethods()}}</p>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app1",
+        data: {
+            message: "hello",
+            myDate: Date.now()
+        },
+        computed: {
+            //计算属性
+            reversedMessage: function () {
+                return this.message.split("").reverse().join("");
+            },
+            nowByComputed: function () {
+                return this.myDate;
+            }
+        },
+        methods: {
+            nowByMethods: function () {
+                return Date.now();
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8"/>
+<head>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <style>
+        .border {
+            border: #ff0000 solid 15px
+        }
+
+        .font {
+            font-size: 25px;
+        }
+
+        .background {
+            background-color: blue;
+        }
+
+        .foo {
+            background-color: red;
+        }
+
+        .yhw {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="app1" :class="[{font:true},borderClass,backgroundClass]">-->
+<!--    你好中国-->
+<!--</div>-->
+<div id="app6">
+    <my-component class="yhw">测试</my-component>
+</div>
+<div id="app8" :style="{backgroundColor:myColor,'font-size':mySize}">
+    你什么
+</div>
+
+<div id="app-7">
+    测试父组件，子组件
+    <ol>
+        <!--
+          现在我们为每个 todo-item 提供 todo 对象
+          todo 对象是变量，即其内容可以是动态的。
+          我们也需要为每个组件提供一个“key”，稍后再
+          作详细解释。
+        -->
+        <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:puretext="item.text"
+                v-bind:key="item.id"
+        ></todo-item>
+    </ol>
+</div>
+<script>
+    let app8 = new Vue({
+        el: "#app8",
+        data: {
+            myColor: "red",
+            mySize1: "25px"
+        },
+        computed:{
+            mySize:function(){
+                return "45px";
+            }
+        }
+    });
+
+    Vue.component('my-component', {
+        template: '<p class="foo bar">Hi</p>'
+    });
+
+    var app6 = new Vue({
+        el: "#app6"
+    })
+
+    Vue.component('todo-item', {
+        props: ['todo', 'puretext'],
+        template: '<li>{{ todo.text }},pureText is {{puretext}}</li>'
+    })
+
+    var app7 = new Vue({
+        el: '#app-7',
+        data: {
+            groceryList: [
+                {id: 0, text: '蔬菜'},
+                {id: 1, text: '奶酪'},
+                {id: 2, text: '随便其它什么人吃的东西'}
+            ]
+        }
+    })
+    // const app1 = new Vue({
+    //     el: "#app1",
+    //     data: {
+    //         borderClass: 'border',
+    //         backgroundClass: 'background'
+    //     }
+    // });
+</script>
+</body>
+</html>

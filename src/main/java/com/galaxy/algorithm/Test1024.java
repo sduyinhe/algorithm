@@ -14,20 +14,21 @@ import java.util.regex.Pattern;
 public class Test1024 {
     public static void main(String[] args) {
 //        // 要匹配的字符串
-//        String source = "未知";
+        String source = "未知";
 //        // 将上面要匹配的字符串转换成小写
 //        // source = source.toLowerCase();
 //        // www.111cn.net 匹配的字符串的正则表达式
-//       // String reg = "[\\u4e00-\\u9fa5]{1,5}";
-//        String reg = "[男,女,未知]";
+         String reg = "[\\u4e00-\\u9fa5]{1,5}";
+        //String reg = "[男,女,未知]";
 //        System.out.println("匹配结果为"+Pattern.matches(reg,source));
 //
-//        Pattern pattern = Pattern.compile(reg);
-//        Matcher m = pattern.matcher(source);
-//        System.out.println("匹配结果为"+m.matches());
-        String reg = "^33[0-9]*$";
         Pattern pattern = Pattern.compile(reg);
-        System.out.println(pattern.matcher("1331").matches());
+        Matcher m = pattern.matcher(source);
+        System.out.println("匹配结果为"+m.matches());
+
+//        String reg = "^33[0-9]*$";
+//        Pattern pattern = Pattern.compile(reg);
+//        System.out.println(pattern.matcher("1331").matches());
         //System.out.println("10592:男_10593:0周岁_10598:30年_10599:至70周岁".hashCode());
     }
 

@@ -1,0 +1,50 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8"/>
+<head>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <style>
+        .border {
+            border: #ff0000 solid 15px
+        }
+
+        .font {
+            font-size: 25px;
+        }
+
+        .background {
+            background-color: blue;
+        }
+
+        .foo {
+            background-color: red;
+        }
+
+        .yhw {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+条件渲染
+<div id="app1" v-if="awesome">vue is awesome!</div>
+<div id="app2" v-else>nonono</div>
+<div id="app3">
+    <template v-if="test">
+        <h1>你好</h1>
+        <div>test</div>
+    </template>
+</div>
+<div id="app4" v-show="ok==true">hello</div>
+<script>
+    new Vue({
+        el: "#app4",
+        data: {
+            ok: true
+        }
+    })
+</script>
+</body>
+</html>
