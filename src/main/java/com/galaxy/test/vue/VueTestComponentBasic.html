@@ -1,0 +1,130 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-model="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8"/>
+<head>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <style>
+    </style>
+</head>
+<body>
+组件基础
+<div id="app1">
+    <button-counter title="中国"></button-counter>
+    <button-counter title="没过"></button-counter>
+    <button-counter :title="title"></button-counter>
+</div>
+<div id="app2">
+    <text-template v-bind:post="post"></text-template>
+</div>
+
+子组件通过$emit来触发父组件绑定的事件，并可以传参给父组件绑定的事件。
+<div id="blog-posts-events-demo">
+    <div :style="{ fontSize: postFontSize + 'em' }">
+        <blog-post
+                v-for="post in posts"
+                v-bind:key="post.id"
+                v-bind:post="post"
+                v-on:click1="postFontSizeMethod"
+        ></blog-post>
+    </div>
+</div>
+
+子组件实现v-model
+<div id="app3">
+    <component-input v-model="myValue"></component-input>
+    当前输入的值为:{{myValue}}
+    <br/>
+    <component-input v-bind:value="yhwTest" @input="yhwTest = $event">这是什么？</component-input>
+    当前输入的值为：{{yhwTest}}
+</div>
+
+
+<script>
+    Vue.component('component-input', {
+        props: ["value"],
+        template: `
+            <div>
+            <slot>哈哈</slot>
+            <input type="text" v-bind:value="value" v-on:input="$emit('input',$event.target.value)">
+            <slot></slot>
+            </div>
+        `
+    });
+    new Vue({
+        el: "#app3",
+        data: {
+            myValue: "你好吗",
+            yhwTest: "恩佐斯"
+        }
+    })
+    Vue.component('blog-post', {
+        props: ['post'],
+        template: `
+    <div class="blog-post">
+      <h3>{{ post.title }}</h3>
+      <button @click="$emit('click1',{id:1,size:'1'})">
+        Enlarge text
+      </button>
+      <div v-html="post.content"></div>
+    </div>
+  `
+    });
+    new Vue({
+        el: '#blog-posts-events-demo',
+        data: {
+            posts: [{id: 1, title: "t1", content: "鹅厂"}, {id: 2, title: "t2", content: "猪厂"}],
+            postFontSize: 1
+        },
+        methods: {
+            postFontSizeMethod(event) {
+                console.info("event:" + JSON.stringify(event));
+                this.postFontSize += Number(event.size);
+            }
+        }
+    });
+
+    Vue.component("button-counter", {
+        data() {
+            return {
+                count: 0
+            }
+        },
+        props: ["title"],
+        template: "<button v-on:click='count++'>你点击了我{{count}}次,title为{{title}}</button>"
+    });
+    new Vue({
+        el: "#app1",
+        data: {
+            title: "你好中国",
+            yhw: "浩文测试"
+        }
+    });
+
+    Vue.component("text-template", {
+        data() {
+            return {}
+        },
+        props: ["post"],
+        template: `
+            <div>
+            <h1>{{post.title}}</h1>
+            <div v-html="post.content"></div>
+            </div>
+        `
+    });
+    new Vue({
+        el: "#app2",
+        data: {
+            post: {
+                title: "我爱你中国",
+                content: "这大好河山啊"
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

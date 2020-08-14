@@ -230,6 +230,11 @@
 <!--            <artifactId>mq-http-sdk</artifactId>-->
 <!--            <version>1.0.2</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>1.15</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -1,0 +1,109 @@
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-model="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8"/>
+<head>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <style>
+    </style>
+</head>
+<body>
+表单输入绑定
+<div id="app1">
+    <input v-model.trim="message" placeholder="请输入消息">
+    <p>message is :{{message}}</p>
+</div>
+<div id="app2">
+    <span>Multiline message is:</span>
+    <p style="white-space:pre-line;">{{ message }}</p>
+    <br>
+    <textarea v-model="message" placeholder="add multiple lines"></textarea>
+</div>
+<br/>
+#复选框-单个复选框-多个复选框
+<div id="app-checkbox">
+    <input type="checkbox" v-model="myChecked" id="myCheckbox">
+    <label for="myCheckbox">单个复选框,当前的值为：{{myChecked}}</label>
+    <input type="checkbox" v-model="checkNames" id="check1" value="yhw">
+    <label for="check1">yhw</label>
+    <input type="checkbox" v-model="checkNames" id="check2" value="zhangsan">
+    <label for="check2">zhangsan</label>
+    <input type="checkbox" v-model="checkNames" id="check3" value="zzz">
+    <label for="check3">zzz</label>
+    <span>{{checkNames}}</span>
+</div>
+#单选按钮
+<br/>
+<div id="example4">
+    <input type="radio" v-model="myRadio" id="radio1" value="one">
+    <label for="radio1">one</label>
+    <input type="radio" v-model="myRadio" id="radio2" value="two">
+    <label for="radio2">two</label>
+    <span>picked:{{myRadio}}</span>
+</div>
+#下拉列表
+<br/>
+<div id="example5">
+    <select v-model="mySelect">
+        <option disabled value="">请选择</option>
+        <option value="a1">A</option>
+        <option value="b1">B</option>
+        <option value="c1">C</option>
+    </select>
+    <p>当前选中的选项为:{{mySelect}}</p>
+</div>
+#多选下拉列表
+<div id="example-6">
+    <select v-model="selected" multiple style="width: 50px;">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <br>
+    <span>Selected: {{ selected }}</span>
+</div>
+<br/>
+
+<script>
+    new Vue({
+        el: '#example-6',
+        data: {
+            selected: []
+        }
+    });
+    new Vue({
+        el: "#example5",
+        data: {
+            mySelect: ""
+        }
+    });
+    new Vue({
+        el: "#example4",
+        data: {
+            myRadio: "one"
+        }
+    });
+    new Vue({
+        el: "#app-checkbox",
+        data: {
+            myChecked: true,
+            checkNames: ["yhw"]
+        }
+    });
+    new Vue({
+        el: "#app2",
+        data: {
+            message: '',
+        }
+    });
+    new Vue({
+        el: "#app1",
+        data: {
+            message: '杨浩文'
+        }
+    });
+</script>
+</body>
+</html>

@@ -37,8 +37,34 @@
         Submit
     </button>
 </div>
-
+<div id="example-1">
+    <button v-on:click="counter=counter+1">Add 1</button>
+    <p>The button above has been clicked {{ counter }} times.</p>
+</div>
+<div id="app2">
+    <a @click.prevent href="https://www.baidu.com">百度一下，你就知道</a>
+</div>
+<div id="app3">
+    <input type="button" @click.middle="sayhello" value="你好">
+</div>
 <script>
+    var app3 = new Vue({
+        el: "#app3",
+        methods: {
+            sayhello: function () {
+                alert("hello");
+            }
+        }
+    });
+    var app2 = new Vue({
+        el: "#app2",
+        data: {},
+        methods: {
+            doThis: function () {
+                alert("hello Mr Zhao!");
+            }
+        }
+    });
     var app1 = new Vue({
         el: "#app1",
         data: {
@@ -46,7 +72,7 @@
         },
         methods: {
             say: function (myWord) {
-                //第一个按钮会传过来一个 object MouseEvent
+                //object MouseEvent默认会放到最右边的参数的位置
                 if (myWord != null && myWord != undefined) {
                     alert(myWord)
                 } else {
@@ -60,7 +86,13 @@
                 alert(message)
             }
         }
-    })
+    });
+    var example1 = new Vue({
+        el: '#example-1',
+        data: {
+            counter: 0
+        }
+    });
 </script>
 </body>
 </html>

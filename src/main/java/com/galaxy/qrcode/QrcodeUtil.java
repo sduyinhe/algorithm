@@ -42,11 +42,11 @@ public class QrcodeUtil {
 //            e.printStackTrace();
 //        }
 
-        try {
-            QRReader(new File("D:\\test\\faheyouwentiBIG.jpg"));
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            QRReader(new File("D:\\test\\faheyouwentiBIG.jpg"));
+//        } catch (NotFoundException e) {
+//            e.printStackTrace();
+//        }
 //        try {
 //            QRReader(new File("D:\\test\\agui2.jpg"));
 //        } catch (NotFoundException e) {
@@ -78,7 +78,11 @@ public class QrcodeUtil {
 //                }
 //            }
 //        }
-
+        try {
+            QREncodeInPoster("https://www.baidu.com", "D:\\test\\originPoster.png", "D:\\test\\resultPoster.png");
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -265,7 +269,7 @@ public class QrcodeUtil {
     }
 
     /**
-     * 处理白边
+     * 去除白边
      *
      * @return
      */
@@ -353,6 +357,52 @@ public class QrcodeUtil {
         g2.dispose();
         matrixImage.flush();
         return matrixImage;
+    }
+
+    /**
+     * 生成二维码
+     */
+    public static void QREncodeInPoster(String content, String posterPath, String desPath) throws WriterException, IOException {
+        //String content = "https://weixin.qq.com/g/AQYAAF6exNycaCHE32mK60xtTnFDDRXzZwCXhmhxtd4ZbLdybkPGvkYUYjJzsgLZ";//二维码内容
+        int width = 168; // 图像宽度
+        int height = 168; // 图像高度
+        String format = "png";// 图像类型
+        Map<EncodeHintType, Object> hints = new HashMap<>();
+        //内容编码格式
+        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+        // 指定纠错等级
+        hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+        //设置二维码边的空度，非负数
+        hints.put(EncodeHintType.MARGIN, 0);
+        BitMatrix bitMatrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);
+        MatrixToImageWriter.writeToPath(bitMatrix, format, new File("D:\\test\\st.png").toPath());// 输出原图片
+        MatrixToImageConfig matrixToImageConfig = new MatrixToImageConfig(0xFF000001, 0xFFFFFFFF);
+        //BufferedImage bufferedImage = LogoMatrix(MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig), new File("D:\\test\\logo.png"));
+//        BufferedImage bufferedImage = LogoMatrix(toBufferedImage(bitMatrix), new File("D:\\logo.png"));
+        BufferedImage dealedImage = dealWhiteBorder(MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig), bitMatrix.getEnclosingRectangle());
+        //ImageIO.write(modifyImageSize(dealedImage, 168, 168), "png", new File(desPath));
+        ImageIO.write(LogoMatrixInPoster(dealedImage, new File(posterPath)), "png", new File(desPath));//输出带logo图片
+        System.out.println("输出成功.");
+    }
+
+    /**
+     * 海报添加二维码
+     */
+    public static BufferedImage LogoMatrixInPoster(BufferedImage matrixImage, File posterFile) throws IOException {
+        /**
+         * 读取海报图片
+         */
+        BufferedImage poster = ImageIO.read(posterFile);
+        Graphics2D posterG2 = poster.createGraphics();
+
+        //开始绘制图片
+        posterG2.drawImage(matrixImage, 473, 1000, 169, 169, null);//绘制
+        BasicStroke stroke = new BasicStroke(5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
+        posterG2.setStroke(stroke);// 设置笔画对象
+        posterG2.setColor(Color.white);
+        posterG2.dispose();
+        poster.flush();
+        return poster;
     }
 
 }
