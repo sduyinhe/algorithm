@@ -7,7 +7,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class DecryptCrmPassword {
     public static void main(String[] args) {
-        String encryptPassword = "7Y+CxrubGYvHZbiRzuC98w==";
+        String encryptPassword = "cDJ10ttS5kx/I5m7SmsKXQ==";
         System.out.println("解密后的密码为：" + DecryptCrmPassword.decrypt(encryptPassword, "1a2!3344bbfjsl#$"));
     }
 

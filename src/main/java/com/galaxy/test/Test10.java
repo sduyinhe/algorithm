@@ -1,10 +1,10 @@
 package com.galaxy.test;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 public class Test10 {
     public static void main(String[] args) {
-        BigDecimal bigDecimal = new BigDecimal("5.00000");
-        System.out.println(bigDecimal.intValue());
+        System.out.println(new Random().nextInt(5000));
     }
 }
