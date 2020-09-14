@@ -101,7 +101,7 @@ public class GZIPUtils {
             return out.toString(encoding);
         } catch (Exception e) {
             log.info("第一次异常：" + e.getMessage());
-            e.printStackTrace();
+            //e.printStackTrace();
             if (e instanceof ZipException) {
                 byte[] buffer = new byte[256];
                 int n;

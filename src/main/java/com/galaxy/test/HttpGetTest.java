@@ -69,8 +69,15 @@ public class HttpGetTest implements Runnable {
 
 
     public void doGet(String url) {
+        //设置请求超时时间
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectTimeout(2000)
+                .setConnectionRequestTimeout(2000)
+                .setSocketTimeout(3000)
+                .build();
+
         // 获得Http客户端(可以理解为:你得先有一个浏览器;注意:实际上HttpClient与浏览器是不一样的)
-        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+        CloseableHttpClient httpClient = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).build();
 
         // 参数
         StringBuffer params = new StringBuffer();
@@ -153,10 +160,10 @@ public class HttpGetTest implements Runnable {
             }
 
             if (testHtml.contains("页面不存在")) {
-                log.info("第{}次出现了页面不存在", count);
+                log.info("第{}次出现了页面不存在，内容为:{}", count, testHtml);
                 sleepTime = 5000L;
             } else if (!testHtml.contains("data-ecimtimesign")) {
-                log.info("第{}次出现了百度搜索", count);
+                log.info("第{}次出现了广告", count);
                 sleepTime = 1000L;
             } else {
                 log.info("网页正常，当前是第{}次", count);
@@ -167,7 +174,7 @@ public class HttpGetTest implements Runnable {
             refererUrl = url;
             count++;
             //随机睡一会儿
-            Thread.sleep((long) (sleepTime * Math.random()));
+            // Thread.sleep((long) (sleepTime * Math.random()));
 //            }
         } catch (ClientProtocolException e) {
             e.printStackTrace();
@@ -175,12 +182,13 @@ public class HttpGetTest implements Runnable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 // 释放资源
                 if (httpClient != null) {
+                    log.info("httpClient.close()资源释放成功");
                     httpClient.close();
                 }
                 if (response != null) {
@@ -202,8 +210,10 @@ public class HttpGetTest implements Runnable {
                 //doGet("https://www.baidu.com/s?ie=utf-8&wd=%E9%87%8D%E7%96%BE%E9%99%A9");
                 try {
                     //doGet("https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu&wd=" + URLEncoder.encode(keywords[i], "UTF-8"));
-                    doGet("https://www.baidu.com/s?ie=utf-8&wd=" + URLEncoder.encode(keywords[i], "UTF-8"));
-                } catch (UnsupportedEncodingException e) {
+                    //doGet("https://www.baidu.com/s?ie=utf-8&ms=1&word=" + URLEncoder.encode(keywords[i], "UTF-8"));
+                    doGet("http://localhost1:8080/userBehavior/testTimeout");
+                } catch (Exception e) {
+                    System.out.println("出现异常：" + e.toString());
                     e.printStackTrace();
                 }
                 countDownLatch.countDown();

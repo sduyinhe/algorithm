@@ -1,7 +1,7 @@
-package com.galaxy.abaoGenerator;
+package com.galaxy.pmsGenerator;
 
-import com.galaxy.abaoGenerator.exception.GeneratorException;
-import com.galaxy.abaoGenerator.provider.DataSourceProvider;
+import com.galaxy.pmsGenerator.provider.DataSourceProvider;
+import com.galaxy.pmsGenerator.exception.GeneratorException;
 import org.apache.commons.lang.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
@@ -20,9 +20,9 @@ import java.util.regex.Pattern;
 public class CodeGenerator {
     public static void main(String[] args) {
         //abao表名由包名_表名构成,在abao-service中生成model的目录，其他地方不需要
-        String tableName = "monitor_task_data_content";
-        String modelName = "MonitorTaskDataContent";
-        String prefix = "sms";
+        String tableName = "sys_user_role";
+        String modelName = "UserRole";
+        String prefix = "sys";
         //构造参数
         GeneratorParam param = GeneratorParam.builder().tableName(tableName)
                 .modelName(modelName)
@@ -37,7 +37,7 @@ public class CodeGenerator {
         Yaml yaml = new Yaml();
         URI uri = null;
         try {
-            uri = new URI(GeneratorConfig.class.getResource("/generator/generator-abao.yml").toString());
+            uri = new URI(GeneratorConfig.class.getResource("/generator/generator-pms.yml").toString());
             String path = uri.getPath();
             if (path != null) {
                 GeneratorConfig properties = (GeneratorConfig) yaml.loadAs(new FileInputStream(path),

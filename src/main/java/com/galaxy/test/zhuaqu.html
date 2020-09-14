@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>支付跳转页面</title>
+</head>
+
+<body>
+	<form id="returnForm" method="post" action="https://test.allianz.cn/epay/app/pay/order?random=0.16277897229968008">
+		<input type="hidden" name="payNo" value="864400200800089339"><input type="hidden" name="timeStamp" value="1598861253968"><input type="hidden" name="payClient" value="weixin"><input type="hidden" name="sign" value="E27189E4F90611DB38B8C7BC95A88C7312687551"></form>
+		<script>
+			document.getElementById('returnForm').submit();
+		</script>
+</body>
+
+</html>

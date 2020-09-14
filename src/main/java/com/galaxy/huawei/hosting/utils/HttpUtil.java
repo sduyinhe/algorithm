@@ -34,14 +34,16 @@ import javax.net.ssl.X509TrustManager;
 public class HttpUtil {
     private static Logger logger = Logger.getLogger(HttpUtil.class);
 
-    /** 用于格式化鉴权头域,给"X-WSSE"参数赋值 */
+    /**
+     * 用于格式化鉴权头域,给"X-WSSE"参数赋值
+     */
     private static final String WSSE_HEADER_FORMAT = "UsernameToken Username=\"%s\",PasswordDigest=\"%s\",Nonce=\"%s\",Created=\"%s\"";
 
     private static final int HTTP_STATUS_OK = 200;
 
     /**
      * 向指定 URL发送POST方法的请求
-     * 
+     *
      * @param appKey
      * @param appSecret
      * @param url
@@ -101,8 +103,7 @@ public class HttpUtil {
             }
         } catch (Exception e) {
             logger.info("Send Post request catch exception: " + e.toString());
-        }
-        finally {
+        } finally {
             IOUtils.closeQuietly(out);
             IOUtils.closeQuietly(is);
             IOUtils.closeQuietly(in);
@@ -115,7 +116,7 @@ public class HttpUtil {
 
     /**
      * 向指定 URL发送PUT方法的请求
-     * 
+     *
      * @param appKey
      * @param appSecret
      * @param url
@@ -176,8 +177,7 @@ public class HttpUtil {
         } catch (Exception e) {
             logger.info("Send Put request catch exception: " + e.toString());
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             IOUtils.closeQuietly(out);
             IOUtils.closeQuietly(is);
             IOUtils.closeQuietly(in);
@@ -190,7 +190,7 @@ public class HttpUtil {
 
     /**
      * 向指定 URL发送DELETE方法的请求
-     * 
+     *
      * @param appKey
      * @param appSecret
      * @param url
@@ -246,8 +246,7 @@ public class HttpUtil {
             }
         } catch (Exception e) {
             logger.info("Send DELETE request catch exception: " + e.toString());
-        }
-        finally {
+        } finally {
             IOUtils.closeQuietly(is);
             IOUtils.closeQuietly(in);
             if (null != connection) {
@@ -259,7 +258,7 @@ public class HttpUtil {
 
     /**
      * 向指定 URL发送GET方法的请求
-     * 
+     *
      * @param appKey
      * @param appSecret
      * @param url
@@ -306,7 +305,7 @@ public class HttpUtil {
             int status = connection.getResponseCode();
             if (301 == status) { //获取录音文件下载地址
                 return connection.getHeaderField("Location");
-            }else if (HTTP_STATUS_OK == status) { //查询绑定信息
+            } else if (HTTP_STATUS_OK == status) { //查询绑定信息
                 is = connection.getInputStream();
             } else { //获取错误码
                 is = connection.getErrorStream();
@@ -318,8 +317,7 @@ public class HttpUtil {
             }
         } catch (Exception e) {
             logger.info("Send GET request catch exception: " + e.toString());
-        }
-        finally {
+        } finally {
             IOUtils.closeQuietly(is);
             IOUtils.closeQuietly(in);
             if (null != connection) {
@@ -331,12 +329,12 @@ public class HttpUtil {
 
     /**
      * 键值对转查询url
-     * 
+     *
      * @param map
      * @return
      */
     public static String map2UrlEncodeString(Map<String, Object> map) {
-        if(null == map || map.isEmpty()) {
+        if (null == map || map.isEmpty()) {
             return "";
         }
         StringBuilder sb = new StringBuilder();
@@ -355,7 +353,7 @@ public class HttpUtil {
 
     /**
      * 生成X-WSSE参数值
-     * 
+     *
      * @param appKey
      * @param appSecret
      * @return
@@ -381,11 +379,11 @@ public class HttpUtil {
 
     /**
      * 忽略SSL证书校验
-     * 
+     *
      * @throws Exception
      */
     static void trustAllHttpsCertificates() throws Exception {
-        TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+        TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
                 return;
             }
@@ -397,7 +395,7 @@ public class HttpUtil {
             public X509Certificate[] getAcceptedIssuers() {
                 return null;
             }
-        } };
+        }};
         SSLContext sc = SSLContext.getInstance("SSL");
         sc.init(null, trustAllCerts, null);
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());

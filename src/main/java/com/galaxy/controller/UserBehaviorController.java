@@ -5,6 +5,9 @@ import com.galaxy.service.UserBehaviorService;
 import com.galaxy.test.UserBehaviorDTO;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
@@ -32,6 +35,28 @@ public class UserBehaviorController {
             }
             return userBehaviorDTO;
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping(value = "/testTimeout")
+    public ResponseEntity testMethod() {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("调用 testMethod 测试连接超时");
+        return new ResponseEntity("成功", HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/testPostForm", consumes = "application/x-www-form-urlencoded")
+    public ResponseEntity testPostForm(@RequestBody String body) {
+        try {
+            System.out.println("body=" + body);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity("成功", HttpStatus.OK);
     }
 
     /**

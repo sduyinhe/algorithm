@@ -20,10 +20,10 @@ import java.util.regex.Pattern;
  */
 public class CodeGenerator {
     public static void main(String[] args) {
-        List<String> tableList = Arrays.asList("abao_policy");
+        List<String> tableList = Arrays.asList("x_dev_info");
         tableList.forEach(tableName -> {
             //构造参数(设置prefix作为包名）
-            GeneratorParam param = GeneratorParam.builder().tableName(tableName).prefix("abao").modelName(Utility.upperNameFirstChar(tableName)).build();
+            GeneratorParam param = GeneratorParam.builder().tableName(tableName).prefix("ecs").modelName(Utility.upperNameFirstChar(tableName)).build();
             //加载配置
             GeneratorConfig properties = loadConfig();
             //生成Code
