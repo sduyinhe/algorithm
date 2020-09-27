@@ -57,19 +57,20 @@
             node4.setPosition(260, 270);
             node4.setSize(80, 80);
             dataModel.add(node4)
-            node4.setHost(air13);
+            //node4.setHost(air13);
 
             let node5 = new ht.Node();
             node5.setName("核电站");
             node5.setImage("nuclearPower");
             node5.setPosition(100, 270)
             node5.setSize(120, 120);
+            node5.setStyle("2d.movable", false)
             dataModel.add(node5);
-            node5.setHost(air13);
+            //node5.setHost(air13);
 
-            air11.setHost(air13);
+            //air11.setHost(air13);
 
-            graphView.setEditable(true);
+            graphView.setEditable(false);
             graphView.setRectEditableFunc(function (data) {
                 return [air11, node4, node5].includes(data);
             });
@@ -80,10 +81,50 @@
             var eventType = ht.Default.isTouchable ? 'touchend' : 'mouseup';
             graphView.getView().addEventListener(eventType, function (e) {
                 var data = graphView.getDataAt(e);
-                if (data && ht.Default.isDoubleClick(e)) {
-                    alert(data.getName() + ' is double clicked.');
+                if (data == node5 && ht.Default.isDoubleClick(e)) {
+                    alert(data.getName() + ' 被双击，需要弹出框框');
                 }
             });
+
+            const edge = new ht.Edge()
+            edge.setSource(node5)
+            edge.setTarget(node4)
+            dataModel.add(edge)
+
+            const edge2 = new ht.Edge(node5, node4)
+            edge2.toggle()
+            dataModel.add(edge2)
+
+            const edge3 = new ht.Edge(node5, node5);
+            dataModel.add(edge3);
+
+
+            var shape2 = new ht.Shape();
+            dataModel.add(shape2);
+            shape2.setStyle('shape.background', null);
+            shape2.setStyle('shape.border.width', 10);
+            shape2.setStyle('shape.border.color', '#1ABC9C');
+            const h = 10;
+            shape2.setPoints([{x: 0, y: 0},
+                {x: 25, y: -h},
+                {x: 50, y: 0},
+                {x: 75, y: h},
+                {x: 100, y: 0},
+                {x: 125, y: -h},
+                {x: 150, y: 0},
+                {x: 175, y: h},
+                {x: 200, y: 0}]);
+            shape2.setSegments([1, 3, 3, 3, 3])
+            shape2.setPosition(200, 200);
+
+            graphView.getLabel = function (data) {
+                if (data instanceof ht.Edge) {
+                    if (data.isEdgeGroupAgent()) {
+                        return data.getEdgeGroupSize() + ' become 1';
+                    }
+                }
+                return data.getName();
+            };
         }
 
     </script>

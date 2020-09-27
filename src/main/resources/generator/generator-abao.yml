@@ -1,5 +1,5 @@
 dataSource:
-    url: jdbc:mysql://localhost:3306/ad?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/abao3?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
     username: root
     password: root
     driverClassName: com.mysql.cj.jdbc.Driver

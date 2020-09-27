@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cheche.crm.repository.${prefix}.command.${modelName}CommandMapper">
+<mapper namespace="com.cheche.pms.repository.${prefix}.command.${modelName}CommandMapper">
     <insert id="save" parameterType="com.cheche.pms.model.${prefix}.${modelName}" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO ${tableName}(
         <#assign sysFields=["create_time","update_time","delete_flag","id"]>

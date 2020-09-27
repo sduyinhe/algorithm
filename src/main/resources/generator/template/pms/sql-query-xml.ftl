@@ -27,7 +27,7 @@
         </where>
     </sql>
 
-    <select id="findById" resultType="com.cheche.crm.model.${prefix}.${modelName}">
+    <select id="findById" resultType="com.cheche.pms.model.${prefix}.${modelName}">
         SELECT
         <include refid="basicColumns" />
         FROM ${tableName} ${modelNameLowerCamel}
@@ -36,7 +36,7 @@
         AND ${modelNameLowerCamel}.delete_flag = 0
     </select>
 
-    <select id="findAll" resultType="com.cheche.crm.model.${prefix}.${modelName}">
+    <select id="findAll" resultType="com.cheche.pms.model.${prefix}.${modelName}">
         SELECT
         <include refid="basicColumns" />
         FROM ${tableName} ${modelNameLowerCamel}
@@ -44,7 +44,7 @@
         ORDER BY ${modelNameLowerCamel}.create_time DESC
     </select>
 
-    <select id="findByCondition" resultType="com.cheche.crm.model.${prefix}.${modelName}">
+    <select id="findByCondition" resultType="com.cheche.pms.model.${prefix}.${modelName}">
         SELECT
         <include refid="basicColumns" />
         FROM ${tableName} ${modelNameLowerCamel}
