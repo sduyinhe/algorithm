@@ -96,7 +96,7 @@ public class ${modelName}Controller extends BaseController{
         ${modelName} ${modelNameLowerCamel} = ${modelNameLowerCamel}UpdateRequest.convert(${modelNameLowerCamel}UpdateRequest);
         ${modelNameLowerCamel}.setId(id);
         ${modelNameLowerCamel}Service.update(${modelNameLowerCamel});
-        return new ResponseEntity<>(new BaseResponse<>(), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new BaseResponse<>(), HttpStatus.OK);
     }
 
     /**
@@ -112,6 +112,6 @@ public class ${modelName}Controller extends BaseController{
         return new ResponseEntity<>(new BaseResponse<>(), HttpStatus.NOT_FOUND);
         }
         ${modelNameLowerCamel}Service.delete(id);
-        return new ResponseEntity<>(new BaseResponse<>(), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new BaseResponse<>(), HttpStatus.OK);
     }
 }
