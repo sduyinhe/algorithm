@@ -5,7 +5,7 @@ import ${servicePackage}.${prefix}.${modelName}Service;
 import ${controllerPackage}.${prefix}.request.${modelName}CreateRequest;
 import ${controllerPackage}.${prefix}.request.${modelName}UpdateRequest;
 import ${controllerPackage}.${prefix}.response.${modelName}FoundResponse;
-import com.cheche.pms.web.response.BaseResponse;
+import com.jdhn.ecs.web.response.BaseResponse;
 import com.github.crm.web.controller.BaseController;
 import lombok.AllArgsConstructor;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;

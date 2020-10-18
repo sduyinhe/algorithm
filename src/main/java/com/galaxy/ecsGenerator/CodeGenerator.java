@@ -1,14 +1,13 @@
-package com.galaxy.generator;
+package com.galaxy.ecsGenerator;
 
-import com.galaxy.generator.exception.GeneratorException;
-import com.galaxy.generator.provider.DataSourceProvider;
+import com.galaxy.ecsGenerator.exception.GeneratorException;
+import com.galaxy.ecsGenerator.provider.DataSourceProvider;
 import org.apache.commons.lang.StringUtils;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileInputStream;
 import java.net.URI;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -16,28 +15,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by luowei on 2017/7/24.
+ * Created by yhw
  */
 public class CodeGenerator {
     public static void main(String[] args) {
-        List<String> tableList = Arrays.asList("device");
-        tableList.forEach(tableName -> {
-            //构造参数(设置prefix作为包名）
-            GeneratorParam param = GeneratorParam.builder().tableName(tableName).prefix("sys")
-                    .modelName(Utility.upperNameFirstChar("device")).build();
-                    //.modelName(Utility.upperNameFirstChar(tableName)).build();
-            //加载配置
-            GeneratorConfig properties = loadConfig();
-            //生成Code
-            codeGenerate(properties, param);
-        });
+        //abao表名由包名_表名构成,在abao-service中生成model的目录，其他地方不需要
+        String tableName = "x_dev_slave";
+        String modelName = "XDevSlave";
+        String prefix = "sys";
+        //构造参数
+        GeneratorParam param = GeneratorParam.builder().tableName(tableName)
+                .modelName(modelName)
+                .prefix(prefix).build();
+        //加载配置
+        GeneratorConfig properties = loadConfig();
+        //生成Code
+        codeGenerate(properties, param);
     }
 
     private static GeneratorConfig loadConfig() {
         Yaml yaml = new Yaml();
         URI uri = null;
         try {
-            uri = new URI(GeneratorConfig.class.getResource("/generator/generator.yml").toString());
+            uri = new URI(GeneratorConfig.class.getResource("/generator/generator-ecs.yml").toString());
             String path = uri.getPath();
             if (path != null) {
                 GeneratorConfig properties = (GeneratorConfig) yaml.loadAs(new FileInputStream(path),

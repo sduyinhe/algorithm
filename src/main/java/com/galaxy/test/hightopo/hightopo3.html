@@ -9,7 +9,7 @@
             margin: 0px;
         }
 
-        .main {
+        .hightopo-main {
             margin: 0px;
             padding: 0px;
             position: absolute;
@@ -19,7 +19,7 @@
             right: 0px;
         }
     </style>
-    <script src="./lib/core/ht.js"></script>
+    <script src="./lib/core/ht-pretty.js"></script>
     <script>
 
         function init() {
@@ -32,322 +32,355 @@
             dataModel = new ht.DataModel();
             graphView = new ht.graph.GraphView(dataModel);
             view = graphView.getView();
-
-            view.className = 'main';
+            view.className = 'hightopo-main';
             document.body.appendChild(view);
 
-            ht.Default.setImage('mac', './images/equipent_industry.png');
-            ht.Default.setImage('electricCar', './images/electricCar.png');
-            ht.Default.setImage("nuclearPower", './images/nuclearPower.png');
+            const air11 = new ht.Node();
+            air11.setName('11-inch MacBook Air');
+            air11.setSize(80, 43);
+            air11.setPosition(100, 70);
+            console.log("测试第一个node", air11)
+            dataModel.add(air11);
 
-            // air11 = new ht.Node();
-            // air11.setName('11-inch MacBook Air');
-            // air11.setImage('mac');
-            // air11.setSize(80, 43);
-            // air11.setPosition(100, 70);
-            // dataModel.add(air11);
-
-            // var eventType = ht.Default.isTouchable ? 'touchend' : 'mouseup';
-            // graphView.getView().addEventListener(eventType, function (e) {
-            //     var data = graphView.getDataAt(e);
-            //     if (data == node5 && ht.Default.isDoubleClick(e)) {
-            //         alert(data.getName() + ' 被双击，需要弹出框框');
+            // ht.Default.setImage('mac', './images/equipent_industry.png');
+            // ht.Default.setImage('electricCar', './images/electricCar.png');
+            // ht.Default.setImage("nuclearPower", './images/nuclearPower.png');
+            //
+            // // air11 = new ht.Node();
+            // // air11.setName('11-inch MacBook Air');
+            // // air11.setImage('mac');
+            // // air11.setSize(80, 43);
+            // // air11.setPosition(100, 70);
+            // // dataModel.add(air11);
+            //
+            // // var eventType = ht.Default.isTouchable ? 'touchend' : 'mouseup';
+            // // graphView.getView().addEventListener(eventType, function (e) {
+            // //     var data = graphView.getDataAt(e);
+            // //     if (data == node5 && ht.Default.isDoubleClick(e)) {
+            // //         alert(data.getName() + ' 被双击，需要弹出框框');
+            // //     }
+            // // });
+            //
+            // const shape2 = new ht.Shape();
+            // dataModel.add(shape2);
+            // shape2.setStyle('shape.background', null);
+            // shape2.setStyle('shape.border.width', 8);
+            // shape2.setStyle('shape.border.color', '#1890ff');
+            // shape2.setPoints([{x: 0, y: 0},
+            //     {x: 1800, y: 0},]);
+            // shape2.setSegments([1, 2])
+            // shape2.setPosition(startX, startY);
+            // shape2.s({
+            //     'shape.dash': true,
+            //     'shape.dash.color': 'white',
+            //     'shape.dash.width': 3
+            // })
+            //
+            // const flowTask = {
+            //     interval: 40,
+            //     action: function (data) {
+            //         if (data instanceof ht.Shape) {
+            //             //if(data==)
+            //             data.s('shape.dash.offset', data.s('shape.dash.offset') - 1);
+            //         }
+            //     }
+            // };
+            // dataModel.addScheduleTask(flowTask);
+            //
+            // const shape3 = new ht.Shape();
+            // //shape3.setStyle('shape.background', null);
+            // shape3.setStyle('shape.border.width', 8);
+            // shape3.setStyle('shape.border.color', '#52C41A');
+            // shape3.setPoints([{x: 0, y: 0}, {x: 1800, y: 0},]);
+            // shape3.setSegments([1, 2])
+            // shape3.setPosition({x: startX, y: startY + 100});
+            // shape3.s({
+            //     'shape.dash': true,
+            //     'shape.dash.color': 'white',
+            //     'shape.dash.width': 3
+            // })
+            // dataModel.add(shape3);
+            //
+            // // 典型工业负荷蓝线
+            // const shape4 = new ht.Shape();
+            // shape4.setStyle('shape.border.width', 4);
+            // shape4.setStyle('shape.border.color', blue);
+            // shape4.setPoints([{x: 0, y: 0}, {x: 200, y: 0},]);
+            // shape4.setSegments([1, 2])
+            // shape4.setPosition({x: startX - 690, y: startY + 200});
+            // shape4.s({
+            //     'shape.dash': true,
+            //     'shape.dash.color': 'white',
+            //     'shape.dash.width': 3
+            // })
+            // dataModel.add(shape4);
+            //
+            // // createNode('yellow', 0, 0.5, shape2, true);
+            // // createNode('yellow', 1, 0.6, shape2, true);
+            // // 9条垂直的蓝线
+            // const shapeVetical1 = createVerticalShape(shape2, 50, 200, blue);
+            // const shapeVetical2 = createVerticalShape(shape2, 200, 200, blue);
+            // const shapeVetical3 = createVerticalShape(shape2, 350, 200, blue);
+            // const shapeVetical4 = createVerticalShape(shape2, 500, 200, blue);
+            // const shapeVetical5 = createVerticalShape(shape2, 650, 200, blue);
+            // const shapeVetical6 = createVerticalShape(shape2, 800, 200, blue);
+            // const shapeVetical7 = createVerticalShape(shape2, 950, 200, blue);
+            // const shapeVetical8 = createVerticalShape(shape2, 1250, 200, blue);
+            // const shapeVetical9 = createVerticalShape(shape2, 1500, 200, blue);
+            //
+            // // 7条垂直的绿线
+            // const shapeGreenVetical1 = createVerticalShape(shape3, 220, 100, green);
+            // const shapeGreenVetical2 = createVerticalShape(shape3, 370, 100, green);
+            // const shapeGreenVetical3 = createVerticalShape(shape3, 520, 100, green);
+            // const shapeGreenVetical4 = createVerticalShape(shape3, 670, 100, green);
+            // const shapeGreenVetical5 = createVerticalShape(shape3, 820, 100, green);
+            // const shapeGreenVetical6 = createVerticalShape(shape3, 970, 100, green);
+            // const shapeGreenVetical7 = createVerticalShape(shape3, 1270, 100, green);
+            //
+            // //典型工业负荷上4条垂直的蓝线
+            // const dcb4ShapeVetical1 = createVerticalShape(shape4, 25, 100, blue, "预留");
+            // const dcb4ShapeVetical2 = createVerticalShape(shape4, 75, 100, blue, "预留");
+            // const dcb4ShapeVetical3 = createVerticalShape(shape4, 125, 100, blue, "预留");
+            // const dcb4ShapeVetical4 = createVerticalShape(shape4, 175, 100, blue, "预留");
+            //
+            // const dcb3 = createNode('#F5222D', 0, 0.8, shapeVetical1, 'DCB3', true, 0, 14, 'nodeImage');
+            // graphView.getLabel = function (data) {
+            //     if (data === dcb3) {
+            //         var p = data.getPosition();
+            //         return data.getName();
+            //     }
+            //     return data.getName();
+            // };
+            // graphView.setEditable(false);
+            // graphView.addInteractorListener(function (e) {
+            //     if (e.kind === 'clickData') {
+            //         console.log(e.data + '被单击');
+            //         console.log('点击位置为：', e.data.getPosition());
+            //         if (e.data === dcb3) {
+            //             dcb3.a({'color': green})
+            //         }
             //     }
             // });
-
-            const shape2 = new ht.Shape();
-            dataModel.add(shape2);
-            shape2.setStyle('shape.background', null);
-            shape2.setStyle('shape.border.width', 8);
-            shape2.setStyle('shape.border.color', '#1890ff');
-            shape2.setPoints([{x: 0, y: 0},
-                {x: 1800, y: 0},]);
-            shape2.setSegments([1, 2])
-            shape2.setPosition(startX, startY);
-            shape2.s({
-                'shape.dash': true,
-                'shape.dash.color': 'white',
-                'shape.dash.width': 3
-            })
-
-            const flowTask = {
-                interval: 40,
-                action: function (data) {
-                    if (data instanceof ht.Shape) {
-                        //if(data==)
-                        data.s('shape.dash.offset', data.s('shape.dash.offset') - 1);
-                    }
-                }
-            };
-            dataModel.addScheduleTask(flowTask);
-
-            const shape3 = new ht.Shape();
-            //shape3.setStyle('shape.background', null);
-            shape3.setStyle('shape.border.width', 8);
-            shape3.setStyle('shape.border.color', '#52C41A');
-            shape3.setPoints([{x: 0, y: 0}, {x: 1800, y: 0},]);
-            shape3.setSegments([1, 2])
-            shape3.setPosition({x: startX, y: startY + 100});
-            shape3.s({
-                'shape.dash': true,
-                'shape.dash.color': 'white',
-                'shape.dash.width': 3
-            })
-            dataModel.add(shape3);
-
-            // 典型工业负荷蓝线
-            const shape4 = new ht.Shape();
-            shape4.setStyle('shape.border.width', 4);
-            shape4.setStyle('shape.border.color', blue);
-            shape4.setPoints([{x: 0, y: 0}, {x: 200, y: 0},]);
-            shape4.setSegments([1, 2])
-            shape4.setPosition({x: startX - 690, y: startY + 200});
-            shape4.s({
-                'shape.dash': true,
-                'shape.dash.color': 'white',
-                'shape.dash.width': 3
-            })
-            dataModel.add(shape4);
-
-            // createNode('yellow', 0, 0.5, shape2, true);
-            // createNode('yellow', 1, 0.6, shape2, true);
-            // 9条垂直的蓝线
-            const shapeVetical1 = createVerticalShape(shape2, 50, 200, blue);
-            const shapeVetical2 = createVerticalShape(shape2, 200, 200, blue);
-            const shapeVetical3 = createVerticalShape(shape2, 350, 200, blue);
-            const shapeVetical4 = createVerticalShape(shape2, 500, 200, blue);
-            const shapeVetical5 = createVerticalShape(shape2, 650, 200, blue);
-            const shapeVetical6 = createVerticalShape(shape2, 800, 200, blue);
-            const shapeVetical7 = createVerticalShape(shape2, 950, 200, blue);
-            const shapeVetical8 = createVerticalShape(shape2, 1250, 200, blue);
-            const shapeVetical9 = createVerticalShape(shape2, 1500, 200, blue);
-
-            // 7条垂直的绿线
-            const shapeGreenVetical1 = createVerticalShape(shape3, 220, 100, green);
-            const shapeGreenVetical2 = createVerticalShape(shape3, 370, 100, green);
-            const shapeGreenVetical3 = createVerticalShape(shape3, 520, 100, green);
-            const shapeGreenVetical4 = createVerticalShape(shape3, 670, 100, green);
-            const shapeGreenVetical5 = createVerticalShape(shape3, 820, 100, green);
-            const shapeGreenVetical6 = createVerticalShape(shape3, 970, 100, green);
-            const shapeGreenVetical7 = createVerticalShape(shape3, 1270, 100, green);
-
-            //典型工业负荷上4条垂直的蓝线
-            const dcb4ShapeVetical1 = createVerticalShape(shape4, 25, 100, blue, "预留");
-            const dcb4ShapeVetical2 = createVerticalShape(shape4, 75, 100, blue, "预留");
-            const dcb4ShapeVetical3 = createVerticalShape(shape4, 125, 100, blue, "预留");
-            const dcb4ShapeVetical4 = createVerticalShape(shape4, 175, 100, blue, "预留");
-
-            const dcb3 = createNode('#F5222D', 0, 0.8, shapeVetical1, 'DCB3', true, 0, 14, 'nodeImage');
-            graphView.getLabel = function (data) {
-                if (data === dcb3) {
-                    var p = data.getPosition();
-                    return data.getName();
-                }
-                return data.getName();
-            };
-            graphView.setEditable(false);
-            graphView.addInteractorListener(function (e) {
-                if (e.kind === 'clickData') {
-                    console.log(e.data + '被单击');
-                    console.log('点击位置为：', e.data.getPosition());
-                    if (e.data === dcb3) {
-                        dcb3.a({'color': green})
-                    }
-                }
-            });
-
-            const gnd1 = createGNDNode(blue, 0, 0.9, shapeVetical1, 'GND1');
-
-            const dcb4 = createNode(red, 0, 0.2, shapeVetical2, 'DCB4', true, -10, 20, 'horizontalNodeImage');
-            const dcb5 = createNode(red, 0, 0.2, shapeVetical3, 'DCB5', true, -10, 14, 'horizontalNodeImage');
-            const shapeVetical3GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical3, 20)
-
-            const greenCircle1 = createCircleNode(green, 1, 0.7, dcb4ShapeVetical1, 20)
-            const redRec1 = createNode(red, 0, 0.4, dcb4ShapeVetical1, null, true, 0, 20, 'dcb4SmallNodeImage');
-            const greenCircle2 = createCircleNode(green, 1, 0.7, dcb4ShapeVetical2, 20);
-            const redRec2 = createNode(red, 0, 0.4, dcb4ShapeVetical2, null, true, 0, 20, 'dcb4SmallNodeImage');
-            const greenCircle3 = createCircleNode(green, 1, 0.7, dcb4ShapeVetical3, 20);
-            const redRec3 = createNode(red, 0, 0.4, dcb4ShapeVetical3, null, true, 0, 20, 'dcb4SmallNodeImage');
-            const greenCircle4 = createCircleNode(green, 1, 0.7, dcb4ShapeVetical4, 20);
-            const redRec4 = createNode(red, 0, 0.4, dcb4ShapeVetical4, null, true, 0, 20, 'dcb4SmallNodeImage');
-
-
-            const dc1 = createEquipmentImageNode(blue, 0, 222, shapeVetical3, '储能DC/DC变换器', 10, 37, 'dcdc', 100, 60, '12px Arial');
-            const dc1Blue1 = createGapVerticalShape(shape2, 340, 50, blue, null, 270);
-            const dc1Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc1Blue1, 20)
-            const dc1Green1 = createGapVerticalShape(shape2, 380, 50, green, null, 270);
-            const equipment1 = createEquipmentImageNode(blue, 0, 75, dc1Blue1, '储能电池模拟器', null, null, 'cndc', 100, 60);
-
-
-            const dcb6 = createNode(red, 0, 0.2, shapeVetical4, 'DCB6', true, -10, 14, 'horizontalNodeImage');
-            const shapeVetical4GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical4, 20)
-            const dc2 = createEquipmentImageNode(blue, 0, 222, shapeVetical4, 'AC/DC变换器', 10, 37, 'dcdc', 100, 60, '12px Arial');
-            const dc2Blue1 = createGapVerticalShape(shape2, 490, 50, blue, null, 270);
-            const dc2Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc2Blue1, 20)
-            const dc2Green1 = createGapVerticalShape(shape2, 530, 50, green, null, 270);
-            const equipment2 = createEquipmentImageNode(blue, 0, 75, dc2Blue1, '预留', null, null, 'yl', 106, 45);
-
-            const dcb7 = createNode(red, 0, 0.2, shapeVetical5, 'DCB7', true, -10, 14, 'horizontalNodeImage');
-            const shapeVetical5GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical5, 20)
-            const dc3 = createEquipmentImageNode(blue, 0, 222, shapeVetical5, '光伏DC/DC变换器', 10, 37, 'dcdc', 100, 60, '12px Arial');
-            const dc3Blue1 = createGapVerticalShape(shape2, 640, 50, blue, null, 270);
-            const dc3Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc3Blue1, 20)
-            const dc3Green1 = createGapVerticalShape(shape2, 680, 50, green, null, 270);
-            const equipment3 = createEquipmentImageNode(blue, 0, 75, dc3Blue1, '光伏模拟器10kW', null, null, 'gfmn', 100, 100);
-
-            const dcb8 = createNode(red, 0, 0.2, shapeVetical6, 'DCB8', true, -10, 14, 'horizontalNodeImage');
-            const shapeVetical6GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical6, 20)
-            const equipment4 = createEquipmentImageNode(blue, 0, 230, shapeVetical6, '直流负载模拟设备', null, null, 'zlfz', 100, 100);
-
-            const dcb9 = createNode(red, 0, 0.2, shapeVetical7, 'DCB9', true, -10, 14, 'horizontalNodeImage');
-            const shapeVetical7GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical7, 20)
-            const dc5 = createEquipmentImageNode(blue, 0, 222, shapeVetical7, 'DCT变换器2', 10, 37, 'dcdc', 100, 60, '12px Arial');
-            const dc5Red1 = createGapVerticalShape(shape2, 940, 120, red, null, 305);
-            const dc5Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc5Red1, 20)
-            const dc5Green1 = createGapVerticalShape(shape2, 960, 140, green, null, 315);
-            const dc5Blue1 = createGapVerticalShape(shape2, 980, 160, blue, null, 325);
-            //const equipment5 = createEquipmentNode(blue, 0, 75, dc5Blue1, null, '待做');
-            createTextNode('工业场景', 'bold 36px 微软雅黑', startX - 800, startY - 50)
-            createTextNode('DC_BUS1 单极性750V', 'bold 16px 微软雅黑', startX - 500, startY - 20)
-            createTextNode('DC_BUS1 单极性0V', 'bold 16px 微软雅黑', startX - 475, startY + 80)
-
-            const dcb20 = createNode(red, 0, 0.45, shape2, 'DCB20', true, 0, 3, 'nodeImage');
-            const dcb20GreenCircle = createCircleNode(green, 1, 0.43, shape2, 20)
-            const line1 = createEquipmentImageNode(blue, 0, 1100, shape2, '线路长度模拟', 50, 3, 'cable', 128, 126, '12px Arial');
-
-
-            const dcb10 = createNode(red, 0, 0.2, shapeVetical8, 'DCB10', true, -10, 14, 'horizontalNodeImage');
-            const shapeVetical8GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical8, 20)
-            const dc6 = createEquipmentImageNode(blue, 0, 222, shapeVetical8, 'DCT变换器1', 10, 37, 'dcdc', 100, 60, '12px Arial');
-            const dc6Red1 = createGapVerticalShape(shape2, 1240, 120, red, null, 305);
-            const dc6Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc6Red1, 20)
-            const dc6Green1 = createGapVerticalShape(shape2, 1260, 140, green, null, 315);
-            const dc6Blue1 = createGapVerticalShape(shape2, 1280, 160, blue, null, 325);
-            //const equipment6 = createEquipmentNode(blue, 0, 75, dc6Blue1, null, '待做');
-
-
-            const dcb11 = createNode(red, 0, 0.8, shapeVetical9, 'DCB11', true, 0, 14, 'nodeImage');
-            const gnd2 = createGNDNode(blue, 0, 0.9, shapeVetical9, 'GND2');
-
-            createTextNode('商业场景', 'bold 36px 微软雅黑', startX + 700, startY - 50)
-            createTextNode('DC_BUS2 单极性750V', 'bold 16px 微软雅黑', startX + 400, startY - 20)
-            createTextNode('DC_BUS2 单极性0V', 'bold 16px 微软雅黑', startX + 425, startY + 80)
-
-            // 750V直流母线开关 DCB1
-            const dcb1ShapeVetical1 = createVerticalShape(shape2, 575, 150, blue, null, -75);
-            const dcb1ShapeGreenVetical1 = createVerticalShape(shape2, 595, 250, green, null, -25);
-            const dcb1 = createNode(red, 0, 0.6, dcb1ShapeVetical1, 'DCB1', true, -10, 20, 'horizontalNodeImage');
-            const dcb1RedCircle = createCircleNode(red, 1, 0.4, dcb1ShapeVetical1, 20)
-            const dcb1GreenCircle = createCircleNode(green, 1, 0.2, dcb1ShapeVetical1, 20)
-
-            createTextNode('来自750V直流母线开关', 'bold 14px 微软雅黑', startX - 310, startY - 160)
-
-
-            // 750V直流母线开关 DCB2
-            const dcb2ShapeVetical1 = createVerticalShape(shape2, 1395, 150, blue, null, -75);
-            const dcb2ShapeGreenVetical1 = createVerticalShape(shape2, 1415, 250, green, null, -25);
-            const dcb2 = createNode(red, 0, 0.6, dcb2ShapeVetical1, 'DCB2', true, -10, 20, 'horizontalNodeImage');
-            const dcb2RedCircle = createCircleNode(red, 1, 0.4, dcb2ShapeVetical1, 20)
-            const dcb2GreenCircle = createCircleNode(green, 1, 0.2, dcb2ShapeVetical1, 20)
-
-            createTextNode('来自750V直流母线开关', 'bold 14px 微软雅黑', startX + 510, startY - 160)
-
-            //绘制环网相关 dc5Blue1
-            const rec1 = createRecShape(null, 0, 565, 965, 1200, 900, red, 'DC_BUS3,+220V环网', 14, 20)
-            const rec12 = createRecShape(null, 0, 565, 965, 1200, 1500, red, null, 14, 20)
-
-            const dcb16 = createNode(red, 0, 300, rec1, 'DCB16', true, 0, 3, 'breakerImage');
-            const dcb19 = createNode(red, 0, 300, rec1, 'DCB19', true, -400, 31, 'breakerImage');
-
-            //DCB12 DCB13
-            const rec1Vetical1 = createVerticalShape(rec1, 220, 100, red, null, -50);
-            const rec1Vetical1Shap1 = createNode(red, 0, 0.64, rec1Vetical1, 'DCB12', true, 0, 14, 'dcb4SmallNodeImage');
-            //dc5Green1
-            const rec2 = createRecShape(null, 0, 585, 945, 1200, 920, green, 'DC_BUS3,0V环网', 9, 20)
-            const rec22 = createRecShape(null, 0, 585, 945, 1200, 1480, green, null, 14, 20)
-
-            const rec2Vetical1 = createVerticalShape(rec2, 200, 80, green, null, -40);
-
-            //dc5Blue1
-            const rec3 = createRecShape(null, 0, 605, 925, 1200, 940, blue, 'DC_BUS3,-220V环网', 23, 20)
-            const rec32 = createRecShape(null, 0, 605, 925, 1200, 1460, blue, null, 14, 20)
-            const dcb17 = createNode(blue, 0, 260, rec3, 'DCB17', true, 0, 31, 'breakerImage');
-            const dcb18 = createNode(blue, 0, 260, rec3, 'DCB18', true, -320, 3, 'breakerImage');
-
-            const rec3Vetical1 = createVerticalShape(rec3, 180, 60, blue, null, -30);
-            const rec3Vetical1Shap1 = createNode(red, 0, 0.4, rec3Vetical1, 'DCB13', true, 0, 20, 'dcb4SmallNodeImage');
-
-            // BUS3横着的蓝线
-            const rec1Shap1 = new ht.Shape();
-            rec1Shap1.setStyle('shape.border.width', 4);
-            rec1Shap1.setStyle('shape.border.color', blue);
-            rec1Shap1.setPoints([{x: 0, y: 0}, {x: 100, y: 0},]);
-            rec1Shap1.setSegments([1, 2])
-            rec1Shap1.setPosition({x: startX, y: startY + 465});
-            dataModel.add(rec1Shap1);
-
-            //BUS3横着的蓝线上4条垂直的蓝线
-            const rec1Shap1Vetical1 = createVerticalShape(rec1Shap1, 10, 80, blue, "预留");
-            const rec1Shap1Vetical2 = createVerticalShape(rec1Shap1, 35, 80, blue, "预留");
-            const rec1Shap1Vetical3 = createVerticalShape(rec1Shap1, 60, 80, blue, "预留");
-            const rec1Shap1Vetical4 = createVerticalShape(rec1Shap1, 85, 80, blue, "预留");
-
-            createCircleNode(green, 1, 0.7, rec1Shap1Vetical1, 20)
-            createNode(red, 0, 0.3, rec1Shap1Vetical1, null, true, 0, 20, 'dcb4SmallNodeImage');
-            createCircleNode(green, 1, 0.7, rec1Shap1Vetical2, 20);
-            createNode(red, 0, 0.3, rec1Shap1Vetical2, null, true, 0, 20, 'dcb4SmallNodeImage');
-            createCircleNode(green, 1, 0.7, rec1Shap1Vetical3, 20);
-            createNode(red, 0, 0.3, rec1Shap1Vetical3, null, true, 0, 20, 'dcb4SmallNodeImage');
-            createCircleNode(green, 1, 0.7, rec1Shap1Vetical4, 20);
-            createNode(red, 0, 0.3, rec1Shap1Vetical4, null, true, 0, 20, 'dcb4SmallNodeImage');
-
-            //DCB14
-            const rec12Vetical1 = createVerticalShape(rec12, 40, 140, red, null, 70);
-            const rec22Vetical1 = createVerticalShape(rec22, 60, 120, green, null, 60);
-            const dcb14 = createNode(red, 0, 0.4, rec12Vetical1, 'DCB14', true, -10, 14, 'horizontalNodeImage');
-            createCircleNode(green, 1, 0.2, rec12Vetical1, 20)
-            const equipment6 = createEquipmentImageNode(blue, 0, 150, rec12Vetical1, '储能DC/DC变换器', 10, 14, 'dcdc', 100, 60, '12px Arial');
-
-            const dc7Red1 = createGapVerticalShape(rec12, 30, 50, red, null, 198);
-            const dc7Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc7Red1, 20)
-            const dc7Green1 = createGapVerticalShape(rec12, 70, 50, green, null, 198);
-            const equipment8 = createEquipmentImageNode(blue, 0, 75, dc7Red1, '储能电池模拟器', null, null, 'cndc', 100, 60)
-
-            //二期执行
-            const rec12Vetical2 = createVerticalShape(rec12, 120, 180, red, null, 90, 5);
-            const rec22Vetical2 = createVerticalShape(rec22, 140, 160, green, null, 80, 5);
-            const rec32Vetical2 = createVerticalShape(rec32, 160, 140, blue, null, 70, 5);
-            const equipment9 = createEquipmentNode(blue, 0, 150, rec32Vetical2, null, '48V回路接口', -20, 1);
-
-            createTextNode('二期执行', 'bold 14px 微软雅黑', startX + 340, startY + 600)
-
-            //DCB15
-            const rec3Vetical2 = createGapVerticalShape(rec3, 240, 140, blue, null, -390);
-            const rec2Vetical2 = createGapVerticalShape(rec2, 220, 120, green, null, -420);
-            const dcb15 = createNode(red, 0, 0.5, rec3Vetical2, 'DCB15', true, 10, 14, 'horizontalNodeImage');
-            createCircleNode(green, 1, 0.8, rec3Vetical2, 20)
-            const equipment10 =
-                createEquipmentImageNode(blue, 0, -20, rec3Vetical2, '光伏DC/DC变换器', 10, 14, 'dcdc', 100, 60, '12px Arial');
             //
-            const dc8Blue1 = createGapVerticalShape(rec3, 250, 50, blue, null, -527);
-            const dc8Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc8Blue1, 20)
-            const dc8Green1 = createGapVerticalShape(rec3, 210, 50, green, null, -527);
-            const equipment11 = createEquipmentImageNode(blue, 0, -20, dc8Blue1, '光伏模拟器10kW', null, null, 'gfmn', 100, 100);
-
-            // 最下侧的48V回路几口
-            const rec1Vetical3 = createVerticalShape(rec1, 140, 140, red, null, -470, 5);
-            const rec2Vetical3 = createVerticalShape(rec2, 120, 160, green, null, -440, 5);
-            const rec3Vetical3 = createVerticalShape(rec3, 100, 180, blue, null, -410, 5);
-            const equipment12 = createEquipmentNode(blue, 0, -30, rec1Vetical3, null, '48V回路接口', 0, 1);
-
-            createTextNode('二期执行', 'bold 14px 微软雅黑', startX + 80, startY + 980)
-
-            const label1 = createTextNode('0V', 'bold 14px 微软雅黑', startX + 80, startY + 780)
-            setInterval(function () {
-                const dy = (100 * Math.random()).toFixed(0)
-                console.log('本次计算的电压为', dy)
-                label1.setName(dy + 'V')
-            }, 1000);
+            // const gnd1 = createGNDNode(blue, 0, 0.9, shapeVetical1, 'GND1');
+            //
+            // const dcb4 = createNode(red, 0, 0.2, shapeVetical2, 'DCB4', true, -10, 14, 'horizontalNodeImage');
+            // const dcb5 = createNode(red, 0, 0.2, shapeVetical3, 'DCB5', true, -10, 14, 'horizontalNodeImage');
+            // const shapeVetical3GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical3, 20)
+            //
+            // const greenCircle1 = createCircleNode(green, 1, 0.7, dcb4ShapeVetical1, 20)
+            // const redRec1 = createNode(red, 0, 0.4, dcb4ShapeVetical1, null, true, 0, 20, 'dcb4SmallNodeImage');
+            // const greenCircle2 = createCircleNode(green, 1, 0.7, dcb4ShapeVetical2, 20);
+            // const redRec2 = createNode(red, 0, 0.4, dcb4ShapeVetical2, null, true, 0, 20, 'dcb4SmallNodeImage');
+            // const greenCircle3 = createCircleNode(green, 1, 0.7, dcb4ShapeVetical3, 20);
+            // const redRec3 = createNode(red, 0, 0.4, dcb4ShapeVetical3, null, true, 0, 20, 'dcb4SmallNodeImage');
+            // const greenCircle4 = createCircleNode(green, 1, 0.7, dcb4ShapeVetical4, 20);
+            // const redRec4 = createNode(red, 0, 0.4, dcb4ShapeVetical4, null, true, 0, 20, 'dcb4SmallNodeImage');
+            //
+            //
+            // const dc1 = createEquipmentImageNode(blue, 0, 222, shapeVetical3, '储能DC/DC变换器', 10, 37, 'dcdc', 100, 60, '12px Arial');
+            // const dc1Blue1 = createGapVerticalShape(shape2, 340, 50, blue, null, 270);
+            // const dc1Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc1Blue1, 20)
+            // const dc1Green1 = createGapVerticalShape(shape2, 380, 50, green, null, 270);
+            // const equipment1 = createEquipmentImageNode(blue, 0, 75, dc1Blue1, '储能电池模拟器', null, null, 'cndc', 100, 60);
+            //
+            //
+            // const dcb6 = createNode(red, 0, 0.2, shapeVetical4, 'DCB6', true, -10, 14, 'horizontalNodeImage');
+            // const shapeVetical4GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical4, 20)
+            // const dc2 = createEquipmentImageNode(blue, 0, 222, shapeVetical4, 'AC/DC变换器', 10, 37, 'dcdc', 100, 60, '12px Arial');
+            // const dc2Blue1 = createGapVerticalShape(shape2, 490, 50, blue, null, 270);
+            // const dc2Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc2Blue1, 20)
+            // const dc2Green1 = createGapVerticalShape(shape2, 530, 50, green, null, 270);
+            // const equipment2 = createEquipmentImageNode(blue, 0, 75, dc2Blue1, '预留', null, null, 'yl', 106, 45);
+            //
+            // const dcb7 = createNode(red, 0, 0.2, shapeVetical5, 'DCB7', true, -10, 14, 'horizontalNodeImage');
+            // const shapeVetical5GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical5, 20)
+            // const dc3 = createEquipmentImageNode(blue, 0, 222, shapeVetical5, '光伏DC/DC变换器', 10, 37, 'dcdc', 100, 60, '12px Arial');
+            // const dc3Blue1 = createGapVerticalShape(shape2, 640, 50, blue, null, 270);
+            // const dc3Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc3Blue1, 20)
+            // const dc3Green1 = createGapVerticalShape(shape2, 680, 50, green, null, 270);
+            // const equipment3 = createEquipmentImageNode(blue, 0, 75, dc3Blue1, '光伏模拟器10kW', null, null, 'gfmn', 100, 100);
+            //
+            // const dcb8 = createNode(red, 0, 0.2, shapeVetical6, 'DCB8', true, -10, 14, 'horizontalNodeImage');
+            // const shapeVetical6GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical6, 20)
+            // const equipment4 = createEquipmentImageNode(blue, 0, 230, shapeVetical6, '直流负载模拟设备', null, null, 'zlfz', 100, 100);
+            //
+            // const dcb9 = createNode(red, 0, 0.2, shapeVetical7, 'DCB9', true, -10, 14, 'horizontalNodeImage');
+            // const shapeVetical7GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical7, 20)
+            // const dc5 = createEquipmentImageNode(blue, 0, 222, shapeVetical7, 'DCT变换器2', 10, 37, 'dcdc', 100, 60, '12px Arial');
+            // const dc5Red1 = createGapVerticalShape(shape2, 940, 120, red, null, 305);
+            // const dc5Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc5Red1, 20)
+            // const dc5Green1 = createGapVerticalShape(shape2, 960, 140, green, null, 315);
+            // const dc5Blue1 = createGapVerticalShape(shape2, 980, 160, blue, null, 325);
+            // //const equipment5 = createEquipmentNode(blue, 0, 75, dc5Blue1, null, '待做');
+            // createTextNode('工业场景', 'bold 36px 微软雅黑', startX - 800, startY - 50)
+            // createTextNode('DC_BUS1 单极性750V', 'bold 16px 微软雅黑', startX - 500, startY - 20)
+            // createTextNode('DC_BUS1 单极性0V', 'bold 16px 微软雅黑', startX - 475, startY + 80)
+            //
+            // const dcb20 = createNode(red, 0, 0.45, shape2, 'DCB20', true, 0, 3, 'nodeImage');
+            // const dcb20GreenCircle = createCircleNode(green, 1, 0.43, shape2, 20)
+            // const line1 = createEquipmentImageNode(blue, 0, 1100, shape2, '线路长度模拟', 50, 3, 'cable', 128, 126, '12px Arial');
+            //
+            //
+            // const dcb10 = createNode(red, 0, 0.2, shapeVetical8, 'DCB10', true, -10, 14, 'horizontalNodeImage');
+            // const shapeVetical8GreenCircle1 = createCircleNode(green, 1, 0.07, shapeVetical8, 20)
+            // const dc6 = createEquipmentImageNode(blue, 0, 222, shapeVetical8, 'DCT变换器1', 10, 37, 'dcdc', 100, 60, '12px Arial');
+            // const dc6Red1 = createGapVerticalShape(shape2, 1240, 120, red, null, 305);
+            // const dc6Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc6Red1, 20)
+            // const dc6Green1 = createGapVerticalShape(shape2, 1260, 140, green, null, 315);
+            // const dc6Blue1 = createGapVerticalShape(shape2, 1280, 160, blue, null, 325);
+            // //const equipment6 = createEquipmentNode(blue, 0, 75, dc6Blue1, null, '待做');
+            //
+            //
+            // const dcb11 = createNode(red, 0, 0.8, shapeVetical9, 'DCB11', true, 0, 14, 'nodeImage');
+            // const gnd2 = createGNDNode(blue, 0, 0.9, shapeVetical9, 'GND2');
+            //
+            // createTextNode('商业场景', 'bold 36px 微软雅黑', startX + 700, startY - 50)
+            // createTextNode('DC_BUS2 单极性750V', 'bold 16px 微软雅黑', startX + 400, startY - 20)
+            // createTextNode('DC_BUS2 单极性0V', 'bold 16px 微软雅黑', startX + 425, startY + 80)
+            //
+            // // 750V直流母线开关 DCB1
+            // const dcb1ShapeVetical1 = createVerticalShape(shape2, 575, 150, blue, null, -75);
+            // const dcb1ShapeGreenVetical1 = createVerticalShape(shape2, 595, 250, green, null, -25);
+            // const dcb1 = createNode(red, 0, 0.6, dcb1ShapeVetical1, 'DCB1', true, -10, 20, 'horizontalNodeImage');
+            // const dcb1RedCircle = createCircleNode(red, 1, 0.4, dcb1ShapeVetical1, 20)
+            // const dcb1GreenCircle = createCircleNode(green, 1, 0.2, dcb1ShapeVetical1, 20)
+            //
+            // createTextNode('来自750V直流母线开关', 'bold 14px 微软雅黑', startX - 310, startY - 160)
+            //
+            //
+            // // 750V直流母线开关 DCB2
+            // const dcb2ShapeVetical1 = createVerticalShape(shape2, 1395, 150, blue, null, -75);
+            // const dcb2ShapeGreenVetical1 = createVerticalShape(shape2, 1415, 250, green, null, -25);
+            // const dcb2 = createNode(red, 0, 0.6, dcb2ShapeVetical1, 'DCB2', true, -10, 20, 'horizontalNodeImage');
+            // const dcb2RedCircle = createCircleNode(red, 1, 0.4, dcb2ShapeVetical1, 20)
+            // const dcb2GreenCircle = createCircleNode(green, 1, 0.2, dcb2ShapeVetical1, 20)
+            //
+            // createTextNode('来自750V直流母线开关', 'bold 14px 微软雅黑', startX + 510, startY - 160)
+            //
+            // //绘制环网相关 dc5Blue1
+            // const rec1 = createRecShape(null, 0, 565, 965, 1200, 900, red, 'DC_BUS3,+220V环网', 14, 20)
+            // const rec12 = createRecShape(null, 0, 565, 965, 1200, 1500, red, null, 14, 20)
+            //
+            // const dcb16 = createNode(red, 0, 300, rec1, 'DCB16', true, 0, 3, 'breakerImage');
+            // const dcb19 = createNode(red, 0, 300, rec1, 'DCB19', true, -400, 31, 'breakerImage');
+            //
+            // //DCB12 DCB13
+            // const rec1Vetical1 = createVerticalShape(rec1, 220, 100, red, null, -50);
+            // const rec1Vetical1Shap1 = createNode(red, 0, 0.64, rec1Vetical1, 'DCB12', true, 0, 14, 'dcb4SmallNodeImage');
+            // //dc5Green1
+            // const rec2 = createRecShape(null, 0, 585, 945, 1200, 920, green, 'DC_BUS3,0V环网', 9, 20)
+            // const rec22 = createRecShape(null, 0, 585, 945, 1200, 1480, green, null, 14, 20)
+            //
+            // const rec2Vetical1 = createVerticalShape(rec2, 200, 80, green, null, -40);
+            //
+            // //dc5Blue1
+            // const rec3 = createRecShape(null, 0, 605, 925, 1200, 940, blue, 'DC_BUS3,-220V环网', 23, 20)
+            // const rec32 = createRecShape(null, 0, 605, 925, 1200, 1460, blue, null, 14, 20)
+            // const dcb17 = createNode(blue, 0, 260, rec3, 'DCB17', true, 0, 31, 'breakerImage');
+            // const dcb18 = createNode(blue, 0, 260, rec3, 'DCB18', true, -320, 3, 'breakerImage');
+            //
+            // const rec3Vetical1 = createVerticalShape(rec3, 180, 60, blue, null, -30);
+            // const rec3Vetical1Shap1 = createNode(red, 0, 0.4, rec3Vetical1, 'DCB13', true, 0, 20, 'dcb4SmallNodeImage');
+            //
+            // // BUS3横着的蓝线
+            // const rec1Shap1 = new ht.Shape();
+            // rec1Shap1.setStyle('shape.border.width', 4);
+            // rec1Shap1.setStyle('shape.border.color', blue);
+            // rec1Shap1.setPoints([{x: 0, y: 0}, {x: 100, y: 0},]);
+            // rec1Shap1.setSegments([1, 2])
+            // rec1Shap1.setPosition({x: startX, y: startY + 465});
+            // dataModel.add(rec1Shap1);
+            //
+            // //BUS3横着的蓝线上4条垂直的蓝线
+            // const rec1Shap1Vetical1 = createVerticalShape(rec1Shap1, 10, 80, blue, "预留");
+            // const rec1Shap1Vetical2 = createVerticalShape(rec1Shap1, 35, 80, blue, "预留");
+            // const rec1Shap1Vetical3 = createVerticalShape(rec1Shap1, 60, 80, blue, "预留");
+            // const rec1Shap1Vetical4 = createVerticalShape(rec1Shap1, 85, 80, blue, "预留");
+            //
+            // createCircleNode(green, 1, 0.7, rec1Shap1Vetical1, 20)
+            // createNode(red, 0, 0.3, rec1Shap1Vetical1, null, true, 0, 20, 'dcb4SmallNodeImage');
+            // createCircleNode(green, 1, 0.7, rec1Shap1Vetical2, 20);
+            // createNode(red, 0, 0.3, rec1Shap1Vetical2, null, true, 0, 20, 'dcb4SmallNodeImage');
+            // createCircleNode(green, 1, 0.7, rec1Shap1Vetical3, 20);
+            // createNode(red, 0, 0.3, rec1Shap1Vetical3, null, true, 0, 20, 'dcb4SmallNodeImage');
+            // createCircleNode(green, 1, 0.7, rec1Shap1Vetical4, 20);
+            // createNode(red, 0, 0.3, rec1Shap1Vetical4, null, true, 0, 20, 'dcb4SmallNodeImage');
+            //
+            // //DCB14
+            // const rec12Vetical1 = createVerticalShape(rec12, 40, 140, red, null, 70);
+            // const rec22Vetical1 = createVerticalShape(rec22, 60, 120, green, null, 60);
+            // const dcb14 = createNode(red, 0, 0.4, rec12Vetical1, 'DCB14', true, -10, 14, 'horizontalNodeImage');
+            // createCircleNode(green, 1, 0.2, rec12Vetical1, 20)
+            // const equipment6 = createEquipmentImageNode(blue, 0, 150, rec12Vetical1, '储能DC/DC变换器', 10, 14, 'dcdc', 100, 60, '12px Arial');
+            //
+            // const dc7Red1 = createGapVerticalShape(rec12, 30, 50, red, null, 198);
+            // const dc7Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc7Red1, 20)
+            // const dc7Green1 = createGapVerticalShape(rec12, 70, 50, green, null, 198);
+            // const equipment8 = createEquipmentImageNode(blue, 0, 75, dc7Red1, '储能电池模拟器', null, null, 'cndc', 100, 60)
+            //
+            // //二期执行
+            // const rec12Vetical2 = createVerticalShape(rec12, 120, 180, red, null, 90, 5);
+            // const rec22Vetical2 = createVerticalShape(rec22, 140, 160, green, null, 80, 5);
+            // const rec32Vetical2 = createVerticalShape(rec32, 160, 140, blue, null, 70, 5);
+            // const equipment9 = createEquipmentImageNode(blue, 0, 170, rec32Vetical2, '48V回路接口', -20, 31, 'pdbyq', 100, 60, '12px Arial');
+            //
+            // createTextNode('二期执行', 'bold 14px 微软雅黑', startX + 340, startY + 635)
+            //
+            // //DCB15
+            // const rec3Vetical2 = createGapVerticalShape(rec3, 240, 140, blue, null, -390);
+            // const rec2Vetical2 = createGapVerticalShape(rec2, 220, 120, green, null, -420);
+            // const dcb15 = createNode(red, 0, 0.5, rec3Vetical2, 'DCB15', true, 10, 14, 'horizontalNodeImage');
+            // createCircleNode(green, 1, 0.8, rec3Vetical2, 20)
+            // const equipment10 =
+            //     createEquipmentImageNode(blue, 0, -20, rec3Vetical2, '光伏DC/DC变换器', 10, 14, 'dcdc', 100, 60, '12px Arial');
+            // //
+            // const dc8Blue1 = createGapVerticalShape(rec3, 250, 50, blue, null, -527);
+            // const dc8Blue1GreenCircle1 = createCircleNode(green, 1, 0.5, dc8Blue1, 20)
+            // const dc8Green1 = createGapVerticalShape(rec3, 210, 50, green, null, -527);
+            // const equipment11 = createEquipmentImageNode(blue, 0, -20, dc8Blue1, '光伏模拟器10kW', null, null, 'gfmn', 100, 100);
+            //
+            // // 最下侧的48V回路几口
+            // const rec1Vetical3 = createVerticalShape(rec1, 140, 140, red, null, -470, 5);
+            // const rec2Vetical3 = createVerticalShape(rec2, 120, 160, green, null, -440, 5);
+            // const rec3Vetical3 = createVerticalShape(rec3, 100, 180, blue, null, -410, 5);
+            // const equipment12 = createEquipmentImageNode(blue, 0, -30, rec1Vetical3, '48V回路接口', 0, 31, 'pdbyq', 100, 60, '12px Arial');
+            //
+            // createTextNode('二期执行', 'bold 14px 微软雅黑', startX + 80, startY + 995)
+            //
+            // const dcb1Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 260, startY - 40)
+            // const dcb2Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX + 560, startY - 40)
+            // const dcb5Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 630, startY + 150)
+            // const dcb6Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 480, startY + 150)
+            // const dcb7Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 330, startY + 150)
+            // const dcb8Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 180, startY + 150)
+            // const dcb9Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 30, startY + 150)
+            // const dcb10Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX + 265, startY + 150)
+            // const dct1Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX + 265, startY + 325)
+            // const dct2Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 30, startY + 325)
+            // const dcb14Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX + 140, startY + 460)
+            // const dcb18Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX + 140, startY + 560)
+            // const dcb15Label1 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 130, startY + 830)
+            // const dcb15Label2 = createLabelNode(blue, '400.00V\n3.00A\n1.00kW', '12px 微软雅黑', startX - 130, startY + 930)
+            // setInterval(function () {
+            //     const dy = (500 * Math.random()).toFixed(2)
+            //     const dl = (5 * Math.random()).toFixed(2)
+            //     const gl = (2 * Math.random()).toFixed(2)
+            //     dcb1Label1.setName(dy + 'V\n' + dl + 'A\n' + gl + 'kW');
+            //     dcb2Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb5Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb6Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb7Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb8Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb9Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb10Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dct1Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dct2Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb14Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb18Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb15Label1.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            //     dcb15Label2.setName((500 * Math.random()).toFixed(2) + 'V\n' + (5 * Math.random()).toFixed(2) + 'A\n' + (2 * Math.random()).toFixed(2) + 'kW');
+            // }, 1000);
         }
 
         function initImage() {
@@ -357,7 +390,9 @@
             ht.Default.setImage("gfmn", './jdhnimages/gfmn-sb.png');
             ht.Default.setImage("zlfz", './jdhnimages/kbczlfz-sb.png');
             ht.Default.setImage("dcdc", './jdhnimages/dcdc-sb.png');
-            ht.Default.setImage("cable", './images/cable_reel.png');
+            ht.Default.setImage("cable", './jdhnimages/cable_reel.png');
+            ht.Default.setImage("pdbyq", './jdhnimages/pdbyq.png');
+
             ht.Default.setImage('nodeImage', {
                 width: 40,
                 height: 28,
@@ -508,23 +543,6 @@
             return node;
         }
 
-        function createBreakerNode(color, index, offset, shape, name, opposite, gap) {
-            var node = new ht.Node();
-            node.s({
-                'select.width': 0,
-                'label.offset.x': -30,
-                'label.offset.y': -28,
-                'label.font': '12px Arial'
-            });
-            node.a({
-                'color': color
-            });
-            node.setImage('nodeImage');
-            node.setName(name)
-            dataModel.add(node);
-            return node;
-        }
-
         function createGNDNode(color, index, offset, shape, name) {
             var node = new ht.Node();
             node.s({
@@ -585,27 +603,6 @@
             });
             node.setHost(shape);
             node.setSize(radius, radius)
-            dataModel.add(node);
-            return node;
-        }
-
-        function createDCNode(color, index, offset, shape, name, position) {
-            var node = new ht.Node();
-            node.s({
-                'select.width': 0,
-                'label.position': position,
-                'label.font': '12px Arial',
-                'attach.index': index,
-                'attach.offset': offset,
-                'attach.offset.relative': false,
-                'attach.gap': 10
-            });
-            node.a({
-                'color': color
-            });
-            node.setImage('dcImage');
-            node.setName(name);
-            node.setHost(shape);
             dataModel.add(node);
             return node;
         }
@@ -698,24 +695,26 @@
             return node;
         }
 
-        function createLineNode(color, index, offset, shape, name, label, gap) {
+        function createLabelNode(color, name, font, x, y) {
             var node = new ht.Node();
             node.s({
+                'shape': 'roundRect',
+                'shape.border.color': color,
+                'shape.border.width': 1,
+                'shape.background': null,
+                'shape.dash': true,
+                'shape.dash.pattern': [4, 4],
+                'shape.dash.color': 'white',
                 'select.width': 0,
-                'label.position': 3,
-                'label.font': '12px Arial',
-                'attach.index': index,
-                'attach.offset': offset,
-                'attach.offset.relative': false,
-                'attach.gap': gap || 20,
-                'label': label
+                'label.position': 17,
+                'label.font': font,
+                'label.align': 'left'
             });
-            node.a({
-                'color': color
-            });
-            node.setImage('lineImage');
+            // node.setImage('dcImage');
             node.setName(name);
-            node.setHost(shape);
+            node.setSize(60, 60);
+            node.setPosition(x, y);
+            //node.setHost(shape);
             dataModel.add(node);
             return node;
         }

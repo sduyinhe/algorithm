@@ -1,0 +1,48 @@
+dataSource:
+    url: jdbc:mysql://localhost:3306/ecs?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+template:
+  path:
+  commonData:
+    author: yanghw #新建文件所属人
+    basePackage: com.jdhn.ecs
+    modelPackage: com.jdhn.ecs.model
+    mapperPackage: com.jdhn.ecs.repository
+    servicePackage: com.jdhn.ecs.service
+    controllerPackage: com.jdhn.ecs.web.controller
+  dataProvider: com.galaxy.ecsGenerator.provider.MyDataSourceProvider
+generator:
+  #model
+  - templateName: ecs/model.ftl
+    targetFileName: /crm-common/src/main/java/com/jdhn/ecs/model/{prefix}/{modelName}.java
+  #mapper-xml
+  - templateName: ecs/sql-query-xml.ftl
+    targetFileName: /crm-common/src/main/resources/sqlmap/{prefix}/query/{modelName}QueryMapper.xml
+  - templateName: ecs/sql-command-xml.ftl
+    targetFileName: /crm-common/src/main/resources/sqlmap//{prefix}/command/{modelName}CommandMapper.xml
+  #repository
+  - templateName: ecs/mapper-query.ftl
+    targetFileName: /crm-common/src/main/java/com/jdhn/ecs/repository/{prefix}/query/{modelName}QueryMapper.java
+  - templateName: ecs/mapper-command.ftl
+    targetFileName: /crm-common/src/main/java/com/jdhn/ecs/repository/{prefix}/command/{modelName}CommandMapper.java
+  #service
+  - templateName: ecs/service.ftl
+    targetFileName: /crm-common/src/main/java/com/jdhn/ecs/service/{prefix}/{modelName}Service.java
+  - templateName: ecs/service-impl.ftl
+    targetFileName: /crm-common/src/main/java/com/jdhn/ecs/service/{prefix}/impl/{modelName}ServiceImpl.java
+  #controller
+  - templateName: ecs/controller.ftl
+    targetFileName: /crm-web-admin/src/main/java/com/jdhn/ecs/web/controller/{prefix}/rest/{modelName}Controller.java
+  - templateName: ecs/controller-request-create.ftl
+    targetFileName: /crm-web-admin/src/main/java/com/jdhn/ecs/web/controller/{prefix}/request/{modelName}CreateRequest.java
+  - templateName: ecs/controller-request-update.ftl
+    targetFileName: /crm-web-admin/src/main/java/com/jdhn/ecs/web/controller/{prefix}/request/{modelName}UpdateRequest.java
+  - templateName: ecs/controller-response.ftl
+    targetFileName: /crm-web-admin/src/main/java/com/jdhn/ecs/web/controller/{prefix}/response/{modelName}FoundResponse.java
+  #test
+  #- templateName: test-controller.ftl
+  #  targetFileName: /crm-web-admin/src/test/java/com/jdhn/ecs/web/controller/{prefix}/rest/{modelName}ControllerIntTest.java
+  #test-doc
+  #todo

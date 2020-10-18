@@ -76,7 +76,7 @@ public class ${modelName}Controller extends BaseController{
         ${modelName}FoundResponse response = new ${modelName}FoundResponse().convert(result);
         AtomicReference<HttpHeaders> httpHeaders = new AtomicReference<>(new HttpHeaders());
         httpHeaders.get().setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").build().toUri());
-        return new ResponseEntity<>(new BaseResponse<>(response), HttpStatus.CREATED);
+        return new ResponseEntity<>(new BaseResponse<>(response), HttpStatus.OK);
     }
 
     /**

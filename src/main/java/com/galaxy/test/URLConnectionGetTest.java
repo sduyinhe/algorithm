@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class URLConnectionGetTest {
     public static void main(String[] args) throws IOException {
-        URLConnectionGetTest.doGet("https://licai.cngold.org/lcxd/c7111361_2.html");
+        System.out.println(URLConnectionGetTest.doGet("http://wthrcdn.etouch.cn/weather_mini?city=北京"));
     }
 
 
