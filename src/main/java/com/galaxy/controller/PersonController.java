@@ -3,6 +3,7 @@ package com.galaxy.controller;
 import com.galaxy.annotation.Description;
 import com.galaxy.entity.PersonInfo;
 import com.galaxy.entity.InternalUser;
+import com.galaxy.entity.TestArrayRequest;
 import com.galaxy.service.ClearCacheService;
 import com.galaxy.service.MultiChildService;
 import com.galaxy.service.PersonService;
@@ -116,4 +117,11 @@ public class PersonController {
         // personService.findByUserId(id);
         System.out.println("测试缓存刷新" + id);
     }
+
+    @GetMapping(value = "/testArray")
+    public void testArray(@RequestBody TestArrayRequest testArrayRequest) {
+        System.out.println(testArrayRequest);
+        System.out.println("没使用切面处理的方法!");
+    }
+
 }

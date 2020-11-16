@@ -20,8 +20,8 @@ import java.util.regex.Pattern;
 public class CodeGenerator {
     public static void main(String[] args) {
         //abao表名由包名_表名构成,在abao-service中生成model的目录，其他地方不需要
-        String tableName = "x_dev_slave";
-        String modelName = "XDevSlave";
+        String tableName = "x_strategy";
+        String modelName = "XStrategy";
         String prefix = "sys";
         //构造参数
         GeneratorParam param = GeneratorParam.builder().tableName(tableName)

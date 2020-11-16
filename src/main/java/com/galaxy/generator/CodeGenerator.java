@@ -20,11 +20,11 @@ import java.util.regex.Pattern;
  */
 public class CodeGenerator {
     public static void main(String[] args) {
-        List<String> tableList = Arrays.asList("device");
+        List<String> tableList = Arrays.asList("log_product_insurance_log");
         tableList.forEach(tableName -> {
             //构造参数(设置prefix作为包名）
-            GeneratorParam param = GeneratorParam.builder().tableName(tableName).prefix("sys")
-                    .modelName(Utility.upperNameFirstChar("device")).build();
+            GeneratorParam param = GeneratorParam.builder().tableName(tableName).prefix("log")
+                    .modelName(Utility.upperNameFirstChar("product_insurance_log")).build();
                     //.modelName(Utility.upperNameFirstChar(tableName)).build();
             //加载配置
             GeneratorConfig properties = loadConfig();
